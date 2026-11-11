@@ -1,39 +1,22 @@
-import { auth } from "./firebase.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
 
-import {
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
-const form = document.getElementById("loginForm");
+import { getAuth } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+const firebaseConfig = {
+apiKey: "AIzaSyCUSzh1u9hrYfsywgi_TSznukNa7wq_Zas",
+authDomain: "keluarga-besar-iman-suki-91989.firebaseapp.com",
+projectId: "keluarga-besar-iman-suki-91989",
+storageBucket: "keluarga-besar-iman-suki-91989.firebasestorage.app",
+messagingSenderId: "303917640364",
+appId: "1:303917640364:web:00815e9533daade02b0d09"
+};
 
-  const username = document
-    .getElementById("username")
-    .value.trim();
+const app = initializeApp(firebaseConfig);
 
-  const password = document
-    .getElementById("password")
-    .value;
+const db = getFirestore(app);
 
-  if (username !== "admin") {
-    alert("Nama pengguna salah!");
-    return;
-  }
+const auth = getAuth(app);
 
-  try {
-    await signInWithEmailAndPassword(
-      auth,
-      "admin@keluarga-besar-iman-suki-91989.firebaseapp.com",
-      password
-    );
-
-    alert("Login berhasil!");
-
-    window.location.href = "admin.html";
-
-  } catch (error) {
-    alert("Login gagal! Periksa password Anda.");
-  }
-});
+export { app, db, auth };
