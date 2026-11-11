@@ -14,6 +14,8 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
+const ADMIN_UID = "9h5mI5smFLXFYs6pK7wlTrsUJV83";
+
 const form = document.getElementById("anggotaForm");
 const daftar = document.getElementById("daftarAnggota");
 
@@ -29,7 +31,7 @@ let editId = null;
 const anggotaRef = collection(db, "anggota");
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user || user.uid !== "XBVyeCeRrISjABslXJ7BmBklQPr1") {
+  if (!user || user.uid !== ADMIN_UID) {
     alert("Silakan login sebagai admin!");
     window.location.href = "login.html";
     return;
@@ -51,7 +53,7 @@ async function muatAnggota() {
     isiPilihanOrang();
 
   } catch (error) {
-    alert("Gagal mengambil data anggota: " + error.message);
+    alert("Gagal mengambil data: " + error.message);
   }
 }
 
@@ -79,7 +81,7 @@ function tampilkanAnggota() {
   document.getElementById("jumlahAnggota").textContent =
     "Jumlah anggota: " + dataAnggota.length;
 
-  if (dataAnggota.length === 0) {
+  if (!dataAnggota.length) {
     daftar.textContent = "Belum ada anggota keluarga.";
     return;
   }
@@ -93,20 +95,20 @@ function tampilkanAnggota() {
 
     const info = document.createElement("p");
     info.textContent =
-      (orang.jenisKelamin || "-") +
-      " | " + (orang.tanggalLahir || "Tanggal lahir belum diisi");
+      (orang.jenisKelamin || "-") + " | " +
+      (orang.tanggalLahir || "Tanggal lahir belum diisi");
 
-    const tombolEdit = document.createElement("button");
-    tombolEdit.className = "edit";
-    tombolEdit.textContent = "Edit";
-    tombolEdit.onclick = () => mulaiEdit(orang);
+    const edit = document.createElement("button");
+    edit.className = "edit";
+    edit.textContent = "Edit";
+    edit.onclick = () => mulaiEdit(orang);
 
-    const tombolHapus = document.createElement("button");
-    tombolHapus.className = "hapus";
-    tombolHapus.textContent = "Hapus";
-    tombolHapus.onclick = () => hapusAnggota(orang);
+    const hapus = document.createElement("button");
+    hapus.className = "hapus";
+    hapus.textContent = "Hapus";
+    hapus.onclick = () => hapusAnggota(orang);
 
-    kotak.append(judul, info, tombolEdit, tombolHapus);
+    kotak.append(judul, info, edit, hapus);
     daftar.appendChild(kotak);
   });
 }
@@ -122,20 +124,16 @@ form.addEventListener("submit", async (e) => {
     ibuId: ibuId.value
   };
 
-  if (!data.nama) {
-    alert("Nama harus diisi!");
-    return;
-  }
+  if (!data.nama) return alert("Nama harus diisi!");
 
   if (data.ayahId && data.ayahId === data.ibuId) {
-    alert("Ayah dan ibu tidak boleh orang yang sama.");
-    return;
+    return alert("Ayah dan ibu tidak boleh sama.");
   }
 
   try {
     if (editId) {
       await updateDoc(doc(db, "anggota", editId), data);
-      alert("Data anggota berhasil diperbarui!");
+      alert("Data berhasil diperbarui!");
     } else {
       await addDoc(anggotaRef, data);
       alert("Anggota berhasil ditambahkan!");
@@ -151,19 +149,14 @@ form.addEventListener("submit", async (e) => {
 
 function mulaiEdit(orang) {
   editId = orang.id;
-
   nama.value = orang.nama || "";
   jenisKelamin.value = orang.jenisKelamin || "";
   tanggalLahir.value = orang.tanggalLahir || "";
   ayahId.value = orang.ayahId || "";
   ibuId.value = orang.ibuId || "";
 
-  document.getElementById("judulForm").textContent =
-    "Edit Anggota Keluarga";
-
-  document.getElementById("simpanBtn").textContent =
-    "Perbarui Data";
-
+  document.getElementById("judulForm").textContent = "Edit Anggota Keluarga";
+  document.getElementById("simpanBtn").textContent = "Perbarui Data";
   document.getElementById("batalBtn").hidden = false;
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -175,7 +168,7 @@ async function hapusAnggota(orang) {
   );
 
   if (dipakai) {
-    alert("Anggota ini masih tercatat sebagai ayah atau ibu. Perbarui hubungan anaknya terlebih dahulu.");
+    alert("Perbarui hubungan anaknya terlebih dahulu.");
     return;
   }
 
@@ -193,13 +186,8 @@ async function hapusAnggota(orang) {
 function resetForm() {
   form.reset();
   editId = null;
-
-  document.getElementById("judulForm").textContent =
-    "Tambah Anggota Keluarga";
-
-  document.getElementById("simpanBtn").textContent =
-    "Simpan Anggota";
-
+  document.getElementById("judulForm").textContent = "Tambah Anggota Keluarga";
+  document.getElementById("simpanBtn").textContent = "Simpan Anggota";
   document.getElementById("batalBtn").hidden = true;
 }
 
