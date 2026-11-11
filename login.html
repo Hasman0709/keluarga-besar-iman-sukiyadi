@@ -1,85 +1,19 @@
 <!DOCTYPE html><html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Admin - Keluarga Besar Iman Sukiyadi</title>  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      background: #eaf3ec;
-    }
-
-    .kotak {
-      width: 100%;
-      max-width: 380px;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 15px #0002;
-    }
-
-    h2 {
-      text-align: center;
-      color: #176b35;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      background: #176b35;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .kembali {
-      display: block;
-      text-align: center;
-      margin-top: 18px;
-      color: #176b35;
-      text-decoration: none;
-    }
-  </style></head><body>  <div class="kotak">
-    <h2>LOGIN ADMIN</h2><form id="loginForm">
-  <input
-    type="text"
-    id="username"
-    placeholder="Nama pengguna"
-    required
-  >
-
-  <input
-    type="password"
-    id="password"
-    placeholder="Kata sandi"
-    required
-  >
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tes Login</title>
+</head>
+<body><h2>TES TOMBOL LOGIN</h2><form id="loginForm">
+  <input id="username" placeholder="Nama pengguna" required>
+  <br><br>
+  <input id="password" type="password" placeholder="Kata sandi" required>
+  <br><br>
   <button type="submit">LOGIN</button>
-</form>
-
-<a class="kembali" href="index.html">Kembali ke Beranda</a>
-
-  </div>  <script type="module" src="js/login.js"></script></body>
+</form><script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("TOMBOL LOGIN BERFUNGSI!");
+});
+</script></body>
 </html>
