@@ -2,18 +2,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tes Login</title>
+<title>Login Admin</title>
 </head>
-<body><h2>TES TOMBOL LOGIN</h2><form id="loginForm">
+<body><h2>LOGIN ADMIN</h2><form id="loginForm">
   <input id="username" placeholder="Nama pengguna" required>
   <br><br>
   <input id="password" type="password" placeholder="Kata sandi" required>
   <br><br>
   <button type="submit">LOGIN</button>
-</form><script>
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  alert("TOMBOL LOGIN BERFUNGSI!");
-});
+</form><p id="status"></p><script type="module">
+try {
+  const { auth } = await import("./js/firebase.js");
+
+  const { signInWithEmailAndPassword } =
+    await import("https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js");
+
+  document.getElementById("status").textContent = "Firebase berhasil dimuat.";
+
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+
+    if (username !== "admin") {
+      alert("Nama pengguna salah!");
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, "hasman0709@gmail.com", password);
+      alert("Login berhasil!");
+      window.location.href = "admin.html";
+    } catch (error) {
+      alert("Login gagal: " + error.code);
+    }
+  });
+
+} catch (error) {
+  document.getElementById("status").textContent =
+    "Firebase gagal dimuat: " + error.message;
+}
 </script></body>
 </html>
