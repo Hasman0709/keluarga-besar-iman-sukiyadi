@@ -1,0 +1,552 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anggota Keluarga - Iman Sukiyadi</title><style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7f5;
+  color: #26352d;
+}
+
+header {
+  background: #145c3b;
+  color: white;
+  text-align: center;
+  padding: 24px 12px;
+}
+
+header h1 {
+  font-size: 21px;
+  margin-bottom: 7px;
+}
+
+nav {
+  background: #10482f;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 5px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.container {
+  width: 92%;
+  max-width: 700px;
+  margin: 25px auto;
+}
+
+h2 {
+  color: #145c3b;
+  font-size: 21px;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.panel {
+  background: white;
+  border-radius: 10px;
+  padding: 17px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px #00000010;
+}
+
+.nama-item {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  font-weight: bold;
+  color: #145c3b;
+}
+
+.nama-item:hover {
+  background: #eef7f0;
+}
+
+.pilihan {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pilihan button {
+  border: 0;
+  background: #e7f3eb;
+  color: #145c3b;
+  padding: 14px 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pilihan button.aktif {
+  background: #145c3b;
+  color: white;
+}
+
+.hasil {
+  margin-top: 18px;
+}
+
+.hasil h3 {
+  color: #145c3b;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.hasil-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.keterangan {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+}
+
+.sembunyi {
+  display: none;
+}
+
+footer {
+  background: #10482f;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 40px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@media(max-width:380px) {
+  .pilihan {
+    grid-template-columns: 1fr;
+  }
+}
+</style></head><body><header>
+  <h1>ANGGOTA KELUARGA</h1>
+  <p>KELUARGA BESAR IMAN SUKIYADI</p>
+</header><nav>
+  <a href="index.html">Beranda</a>
+  <a href="silsilah.html">Pohon Silsilah</a>
+  <a href="anggota.html">Anggota Keluarga</a>
+  <a href="galeri.html">Galeri Foto</a>
+</nav><main class="container">  <h2>Cari Anggota Keluarga</h2><input
+id="cari"
+type="search"
+placeholder="Ketik nama anggota keluarga..."
+
+«»
+
+  <section class="panel" id="daftar">
+    <p class="keterangan">Ketik nama untuk mencari anggota keluarga.</p>
+  </section>  <section class="panel sembunyi" id="profil"><h2 id="namaTerpilih"></h2>
+
+<p class="keterangan">
+  Pilih hubungan keluarga yang ingin dilihat.
+</p>
+
+<div class="pilihan" id="pilihan">
+
+  <button data-jenis="ayah">👨 Ayah</button>
+  <button data-jenis="ibu">👩 Ibu</button>
+
+  <button data-jenis="kakek">👴 Kakek</button>
+  <button data-jenis="nenek">👵 Nenek</button>
+
+  <button data-jenis="buyutKakung">👴 Mbah Buyut Kakung</button>
+  <button data-jenis="buyutPutri">👵 Mbah Buyut Putri</button>
+
+  <button data-jenis="canggahKakung">👴 Canggah Kakung</button>
+  <button data-jenis="canggahPutri">👵 Canggah Putri</button>
+
+  <button data-jenis="warengKakung">👴 Wareng Kakung</button>
+  <button data-jenis="warengPutri">👵 Wareng Putri</button>
+
+  <button data-jenis="pasangan">❤️ Pasangan</button>
+
+  <button data-jenis="anak">👨‍👩‍👧 Anak</button>
+  <button data-jenis="cucu">👶 Cucu</button>
+  <button data-jenis="cicit">🌱 Cicit</button>
+  <button data-jenis="canggahTurun">🌳 Canggah</button>
+  <button data-jenis="warengTurun">🌿 Wareng</button>
+
+</div>
+
+<div class="hasil" id="hasil">
+  <p class="keterangan">
+    Silakan pilih hubungan keluarga di atas.
+  </p>
+</div>
+
+  </section></main><footer>
+  <strong>KELUARGA BESAR IMAN SUKIYADI</strong><br>
+  Menjaga Silsilah, Mempererat Silaturahmi<br>
+  &copy; 2026 Keluarga Besar Iman Sukiyadi
+</footer><script type="module">
+
+import { db } from "./js/firebase.js";
+
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+const cari = document.getElementById("cari");
+const daftar = document.getElementById("daftar");
+const profil = document.getElementById("profil");
+const namaTerpilih = document.getElementById("namaTerpilih");
+const hasil = document.getElementById("hasil");
+const pilihan = document.getElementById("pilihan");
+
+let anggota = [];
+let terpilih = null;
+let indeks = new Map();
+
+const norm = s =>
+  String(s || "").trim().toLocaleLowerCase("id");
+
+function urutNama(a, b) {
+  const ua = Number(a.urutan) || 999999;
+  const ub = Number(b.urutan) || 999999;
+
+  return ua - ub ||
+    String(a.nama).localeCompare(String(b.nama), "id");
+}
+
+function cariId(id) {
+  return indeks.get(String(id || "")) || null;
+}
+
+function orangTua(orang) {
+  return {
+    ayah: cariId(orang.ayahId) ||
+      anggota.find(a => norm(a.nama) === norm(orang.ayah)) || null,
+
+    ibu: cariId(orang.ibuId) ||
+      anggota.find(a => norm(a.nama) === norm(orang.ibu)) || null
+  };
+}
+
+function anakDari(orang) {
+  return anggota.filter(a =>
+    String(a.ayahId || "") === String(orang.id) ||
+    String(a.ibuId || "") === String(orang.id) ||
+    (!a.ayahId && norm(a.ayah) === norm(orang.nama)) ||
+    (!a.ibuId && norm(a.ibu) === norm(orang.nama))
+  ).sort(urutNama);
+}
+
+function tingkatLeluhur(orang, tingkat) {
+  let generasi = [orang];
+
+  for (let i = 0; i < tingkat; i++) {
+    const berikutnya = new Map();
+
+    generasi.forEach(induk => {
+      const ortu = orangTua(induk);
+
+      if (ortu.ayah) berikutnya.set(ortu.ayah.id, ortu.ayah);
+      if (ortu.ibu) berikutnya.set(ortu.ibu.id, ortu.ibu);
+    });
+
+    generasi = [...berikutnya.values()];
+
+    if (!generasi.length) break;
+  }
+
+  return generasi.sort(urutNama);
+}
+
+function tingkatKeturunan(orang, tingkat) {
+  let generasi = [orang];
+
+  for (let i = 0; i < tingkat; i++) {
+    const berikutnya = new Map();
+
+    generasi.forEach(induk => {
+      anakDari(induk).forEach(anak => {
+        berikutnya.set(anak.id, anak);
+      });
+    });
+
+    generasi = [...berikutnya.values()];
+
+    if (!generasi.length) break;
+  }
+
+  return generasi.sort(urutNama);
+}
+
+function tampilkanDaftar(data) {
+  daftar.innerHTML = "";
+
+  if (!data.length) {
+    daftar.innerHTML =
+      '<p class="keterangan">Nama tidak ditemukan.</p>';
+    return;
+  }
+
+  data.slice(0, 50).forEach(orang => {
+    const baris = document.createElement("div");
+
+    baris.className = "nama-item";
+    baris.textContent = orang.nama;
+
+    baris.addEventListener("click", () => {
+      pilihAnggota(orang);
+    });
+
+    daftar.appendChild(baris);
+  });
+}
+
+function pilihAnggota(orang) {
+  terpilih = orang;
+
+  namaTerpilih.textContent = orang.nama;
+
+  profil.classList.remove("sembunyi");
+
+  hasil.innerHTML =
+    '<p class="keterangan">Silakan pilih hubungan keluarga di atas.</p>';
+
+  document.querySelectorAll(".pilihan button").forEach(b => {
+    b.classList.remove("aktif");
+  });
+
+  profil.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function dataHubungan(jenis) {
+  const tingkatAtas = {
+    ayah: 1,
+    ibu: 1,
+    kakek: 2,
+    nenek: 2,
+    buyutKakung: 3,
+    buyutPutri: 3,
+    canggahKakung: 4,
+    canggahPutri: 4,
+    warengKakung: 5,
+    warengPutri: 5
+  };
+
+  const jenisKelamin = {
+    ayah: "Laki-laki",
+    ibu: "Perempuan",
+    kakek: "Laki-laki",
+    nenek: "Perempuan",
+    buyutKakung: "Laki-laki",
+    buyutPutri: "Perempuan",
+    canggahKakung: "Laki-laki",
+    canggahPutri: "Perempuan",
+    warengKakung: "Laki-laki",
+    warengPutri: "Perempuan"
+  };
+
+  if (tingkatAtas[jenis]) {
+    let data = tingkatLeluhur(
+      terpilih,
+      tingkatAtas[jenis]
+    );
+
+    data = data.filter(a =>
+      norm(a.jenisKelamin) === norm(jenisKelamin[jenis]) ||
+      norm(a.jenisKelamin) === (
+        jenisKelamin[jenis] === "Laki-laki" ? "l" : "p"
+      )
+    );
+
+    return data;
+  }
+
+  const tingkatBawah = {
+    anak: 1,
+    cucu: 2,
+    cicit: 3,
+    canggahTurun: 4,
+    warengTurun: 5
+  };
+
+  if (tingkatBawah[jenis]) {
+    return tingkatKeturunan(
+      terpilih,
+      tingkatBawah[jenis]
+    );
+  }
+
+  if (jenis === "pasangan") {
+    const id = terpilih.pasanganId;
+
+    if (id) {
+      const pasangan = cariId(id);
+      return pasangan ? [pasangan] : [];
+    }
+
+    if (terpilih.pasangan) {
+      return anggota.filter(a =>
+        norm(a.nama) === norm(terpilih.pasangan)
+      );
+    }
+  }
+
+  return [];
+}
+
+const judulHubungan = {
+  ayah: "Ayah",
+  ibu: "Ibu",
+  kakek: "Kakek",
+  nenek: "Nenek",
+  buyutKakung: "Mbah Buyut Kakung",
+  buyutPutri: "Mbah Buyut Putri",
+  canggahKakung: "Canggah Kakung",
+  canggahPutri: "Canggah Putri",
+  warengKakung: "Wareng Kakung",
+  warengPutri: "Wareng Putri",
+  pasangan: "Pasangan",
+  anak: "Anak",
+  cucu: "Cucu",
+  cicit: "Cicit",
+  canggahTurun: "Canggah",
+  warengTurun: "Wareng"
+};
+
+function tampilkanHubungan(jenis) {
+  if (!terpilih) return;
+
+  const data = dataHubungan(jenis);
+
+  hasil.innerHTML = "";
+
+  const heading = document.createElement("h3");
+
+  heading.textContent =
+    judulHubungan[jenis] + " " + terpilih.nama;
+
+  hasil.appendChild(heading);
+
+  if (!data.length) {
+    const kosong = document.createElement("p");
+
+    kosong.className = "keterangan";
+
+    kosong.textContent =
+      "Data hubungan keluarga ini belum tersedia.";
+
+    hasil.appendChild(kosong);
+
+    return;
+  }
+
+  data.forEach((orang, index) => {
+    const baris = document.createElement("div");
+
+    baris.className = "hasil-item";
+
+    baris.textContent =
+      (index + 1) + ". " + orang.nama;
+
+    if (orang.tanggalLahir) {
+      baris.textContent +=
+        " | Lahir: " + orang.tanggalLahir;
+    }
+
+    hasil.appendChild(baris);
+  });
+}
+
+pilihan.addEventListener("click", event => {
+  const tombol = event.target.closest("button[data-jenis]");
+
+  if (!tombol) return;
+
+  document.querySelectorAll(".pilihan button").forEach(b => {
+    b.classList.remove("aktif");
+  });
+
+  tombol.classList.add("aktif");
+
+  tampilkanHubungan(tombol.dataset.jenis);
+});
+
+cari.addEventListener("input", () => {
+  const kata = norm(cari.value);
+
+  profil.classList.add("sembunyi");
+
+  if (!kata) {
+    daftar.innerHTML =
+      '<p class="keterangan">Ketik nama untuk mencari anggota keluarga.</p>';
+    return;
+  }
+
+  tampilkanDaftar(
+    anggota.filter(a =>
+      norm(a.nama).includes(kata)
+    ).sort(urutNama)
+  );
+});
+
+async function mulai() {
+  try {
+    daftar.innerHTML =
+      '<p class="keterangan">Memuat data keluarga...</p>';
+
+    const snapshot = await getDocs(
+      collection(db, "anggota")
+    );
+
+    anggota = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })).filter(a => a.nama);
+
+    indeks = new Map(
+      anggota.map(a => [a.id, a])
+    );
+
+    daftar.innerHTML =
+      '<p class="keterangan">Silakan ketik nama anggota keluarga.</p>';
+
+  } catch (error) {
+    console.error(error);
+
+    daftar.innerHTML =
+      '<p class="keterangan">Data tidak dapat dimuat. Periksa koneksi dan izin Firebase.</p>';
+  }
+}
+
+mulai();
+
+</script></body>
+</html>
