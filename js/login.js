@@ -6,7 +6,7 @@ import {
 
 const form = document.getElementById("loginForm");
 
-form.addEventListener("submit", async function(e) {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const username = document.getElementById("username").value.trim();
@@ -20,15 +20,14 @@ form.addEventListener("submit", async function(e) {
   try {
     await signInWithEmailAndPassword(
       auth,
-      "admin@keluarga-besar-iman-suki-91989.firebaseapp.com",
+      "hasman0709@gmail.com",
       password
     );
-
-    alert("Login berhasil!");
 
     window.location.href = "admin.html";
 
   } catch (error) {
-    alert("Login gagal. Periksa password Anda.");
+    console.error(error);
+    alert("Login gagal: " + error.code);
   }
 });
