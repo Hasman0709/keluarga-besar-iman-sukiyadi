@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Admin - Iman Sukiyadi</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eaf2ed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-box {
+  background: white;
+  width: 100%;
+  max-width: 380px;
+  padding: 30px 25px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px #0002;
+  text-align: center;
+}
+
+.logo {
+  font-size: 50px;
+}
+
+h2 {
+  color: #145c3b;
+  margin-bottom: 8px;
+}
+
+p {
+  color: #666;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: #145c3b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  color: #145c3b;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+  <div class="logo">🌳</div>
+
+  <h2>LOGIN ADMIN</h2>
+
+  <p>Keluarga Besar Iman Sukiyadi</p>
+
+  <form id="loginForm">
+
+    <input
+      type="text"
+      id="username"
+      placeholder="Nama pengguna"
+      required
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      required
+    >
+
+    <button type="submit">MASUK</button>
+
+  </form>
+
+  <a href="index.html">Kembali ke Halaman Utama</a>
+
+</div>
+
+<script type="module" src="js/login.js"></script>
+
+</body>
+</html>
