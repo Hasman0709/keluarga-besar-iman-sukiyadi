@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Keluarga Iman Sukiyadi</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f2;
+  margin: 0;
+  color: #263b30;
+}
+
+header {
+  background: #145c3b;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  padding: 15px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 13px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  box-sizing: border-box;
+  background: white;
+}
+
+button {
+  padding: 11px 15px;
+  border: none;
+  border-radius: 7px;
+  background: #145c3b;
+  color: white;
+  cursor: pointer;
+  margin: 3px;
+}
+
+.hapus {
+  background: #c62828;
+}
+
+.edit {
+  background: #e18a00;
+}
+
+.logout {
+  background: #c62828;
+}
+
+.anggota {
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+}
+
+.anggota strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+nav a {
+  color: white;
+  margin: 5px;
+  display: inline-block;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🌳 ADMIN KELUARGA</h2>
+  <p>Keluarga Besar Iman Sukiyadi</p>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="silsilah.html">Pohon Silsilah</a>
+  </nav>
+  <br>
+  <button class="logout" id="logoutBtn">Keluar</button>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h3 id="judulForm">Tambah Anggota Keluarga</h3>
+
+    <form id="anggotaForm">
+
+      <label>Nama lengkap</label>
+      <input id="nama" required placeholder="Nama anggota">
+
+      <label>Jenis kelamin</label>
+      <select id="jenisKelamin" required>
+        <option value="">Pilih jenis kelamin</option>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
+
+      <label>Tanggal lahir</label>
+      <input type="date" id="tanggalLahir">
+
+      <label>Nama ayah</label>
+      <select id="ayahId">
+        <option value="">Belum diketahui / tidak ada</option>
+      </select>
+
+      <label>Nama ibu</label>
+      <select id="ibuId">
+        <option value="">Belum diketahui / tidak ada</option>
+      </select>
+
+      <button type="submit" id="simpanBtn">
+        Simpan Anggota
+      </button>
+
+      <button type="button" id="batalBtn" hidden>
+        Batal Edit
+      </button>
+
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Daftar Anggota Keluarga</h3>
+    <p id="jumlahAnggota">Memuat data...</p>
+    <div id="daftarAnggota"></div>
+  </div>
+
+</div>
+
+<script type="module" src="js/admin.js"></script>
+
+</body>
+</html>
