@@ -1,239 +1,367 @@
 <!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Keluarga Iman Sukiyadi</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin - Keluarga Besar Iman Sukiyadi</title><style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f0f5f1;
-  margin: 0;
-  color: #263b30;
+    font-family: Arial, sans-serif;
+    background: #f0f7f1;
+    color: #26352d;
 }
 
+/* HEADER */
 header {
-  background: linear-gradient(135deg, #145c3b, #218653);
-  color: white;
-  padding: 25px 15px;
-  text-align: center;
+    background: linear-gradient(135deg, #064d2d, #16834c);
+    color: white;
+    padding: 22px 16px;
+    border-bottom: 5px solid #a5df62;
 }
 
-header h2 {
-  margin: 0 0 8px;
-  font-size: 23px;
+.header-inner {
+    max-width: 950px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 13px;
 }
 
-header p {
-  margin: 0 0 15px;
-  font-size: 14px;
+.logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: white;
+    color: #14643a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
 }
 
-nav {
-  margin-bottom: 12px;
+.identitas {
+    flex: 1;
 }
 
-nav a {
-  color: white;
-  margin: 5px 8px;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 14px;
+.identitas h1 {
+    font-size: 19px;
+    margin-bottom: 5px;
 }
 
-nav a:hover {
-  text-decoration: underline;
+.identitas p {
+    font-size: 12px;
+    color: #e4f5e9;
 }
 
+.keluar {
+    background: white;
+    color: #145c3b;
+    border: none;
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* BANNER */
+.banner {
+    max-width: 950px;
+    margin: 22px auto;
+    width: 92%;
+    padding: 25px 20px;
+    border-radius: 15px;
+    background:
+        linear-gradient(90deg, rgba(5,65,35,.85), rgba(12,110,58,.65)),
+        url("https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.banner h2 {
+    font-size: 23px;
+    margin-bottom: 9px;
+}
+
+.banner p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* CONTAINER */
 .container {
-  padding: 16px;
-  max-width: 750px;
-  margin: auto;
+    width: 92%;
+    max-width: 950px;
+    margin: 25px auto;
 }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 12px #00000012;
+.judul {
+    color: #145c3b;
+    font-size: 20px;
+    margin-bottom: 15px;
 }
 
-.card h3 {
-  color: #145c3b;
-  margin-top: 0;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e5eee7;
+/* FORM */
+.form-card {
+    background: white;
+    padding: 20px;
+    border-radius: 13px;
+    box-shadow: 0 3px 12px #00000012;
+    margin-bottom: 25px;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-  font-size: 14px;
-  margin-top: 10px;
+.form-card label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #315b43;
+    margin: 14px 0 7px;
 }
 
-input, select {
-  width: 100%;
-  padding: 13px;
-  margin: 7px 0 12px;
-  border: 1px solid #ccd8cf;
-  border-radius: 8px;
-  background: white;
-  font-size: 15px;
-  color: #263b30;
+.form-card input,
+.form-card select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbded0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fbfefb;
+    outline: none;
 }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: #218653;
-  box-shadow: 0 0 0 2px #21865320;
+.form-card input:focus,
+.form-card select:focus {
+    border-color: #16834c;
 }
 
-button {
-  padding: 12px 17px;
-  border: none;
-  border-radius: 8px;
-  background: #145c3b;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  margin: 4px 2px;
+.tombol {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-button:active {
-  transform: scale(0.97);
-}
-
-button:hover {
-  opacity: 0.9;
+.tombol button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #simpanBtn {
-  width: 100%;
-  margin-top: 12px;
-  font-weight: bold;
+    background: #16834c;
+    color: white;
 }
 
 #batalBtn {
-  background: #68766d;
-  width: 100%;
+    background: #e7eee9;
+    color: #315b43;
 }
 
-.hapus, .logout {
-  background: #c62828;
+/* RINGKASAN */
+.ringkasan {
+    background: linear-gradient(135deg, #e1f5e6, #f7fff8);
+    border-left: 5px solid #16834c;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 25px;
 }
 
-.edit {
-  background: #e18a00;
+.ringkasan .angka {
+    font-size: 30px;
+    font-weight: bold;
+    color: #145c3b;
+    margin-top: 6px;
 }
 
-.anggota {
-  border-bottom: 1px solid #e1e8e3;
-  padding: 15px 0;
-  line-height: 1.5;
+/* DAFTAR ANGGOTA */
+.daftar-card {
+    background: white;
+    padding: 18px;
+    border-radius: 13px;
+    box-shadow: 0 3px 12px #00000012;
+    overflow-x: auto;
 }
 
-.anggota:last-child {
-  border-bottom: none;
+#daftarAnggota {
+    margin-top: 12px;
 }
 
-.anggota strong {
-  display: block;
-  color: #145c3b;
-  font-size: 16px;
-  margin-bottom: 5px;
+#daftarAnggota > div {
+    padding: 13px;
+    border-bottom: 1px solid #e5eee7;
 }
 
-#jumlahAnggota {
-  background: #e9f5ec;
-  color: #145c3b;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
+#daftarAnggota > div:last-child {
+    border-bottom: none;
 }
 
+/* FOOTER */
 footer {
-  text-align: center;
-  padding: 20px;
-  color: #718078;
-  font-size: 12px;
+    background: linear-gradient(135deg, #064d2d, #126b3c);
+    color: white;
+    text-align: center;
+    padding: 25px 12px;
+    margin-top: 40px;
+    border-top: 5px solid #a5df62;
+    font-size: 12px;
+    line-height: 1.9;
 }
 
-@media (max-width: 480px) {
-  header h2 {
-    font-size: 20px;
-  }
-
-  .container {
-    padding: 12px;
-  }
-
-  .card {
-    padding: 16px;
-  }
-
-  button {
-    padding: 12px;
-  }
+/* LOADING */
+#loading {
+    text-align: center;
+    padding: 60px 15px;
+    color: #145c3b;
+    font-weight: bold;
 }
-</style></head><body><header>
-  <h2>🌳 ADMIN KELUARGA</h2>
-  <p>Keluarga Besar Iman Sukiyadi</p>  <nav>
-    <a href="index.html">🏠 Beranda</a>
-    <a href="silsilah.html">🌳 Pohon Silsilah</a>
-  </nav><button class="logout" id="logoutBtn">Keluar</button>
 
-</header><div class="container">  <div class="card">
-    <h3 id="judulForm">Tambah Anggota Keluarga</h3><form id="anggotaForm">
+#dashboard {
+    display: none;
+}
 
-  <label>Nama lengkap</label>
-  <input
-    id="nama"
-    type="text"
-    required
-    placeholder="Masukkan nama lengkap"
-  >
+/* TAMPILAN HP */
+@media(max-width: 480px) {
+    .header-inner {
+        flex-wrap: wrap;
+    }
 
-  <label>Jenis kelamin</label>
-  <select id="jenisKelamin" required>
-    <option value="">Pilih jenis kelamin</option>
-    <option value="Laki-laki">Laki-laki</option>
-    <option value="Perempuan">Perempuan</option>
-  </select>
+    .logo {
+        width: 48px;
+        height: 48px;
+        font-size: 25px;
+    }
 
-  <label>Tanggal lahir</label>
-  <input type="date" id="tanggalLahir">
+    .identitas h1 {
+        font-size: 15px;
+    }
 
-  <label>Nama ayah</label>
-  <select id="ayahId">
-    <option value="">Belum diketahui / tidak ada</option>
-  </select>
+    .identitas p {
+        font-size: 10px;
+    }
 
-  <label>Nama ibu</label>
-  <select id="ibuId">
-    <option value="">Belum diketahui / tidak ada</option>
-  </select>
+    .keluar {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
 
-  <button type="submit" id="simpanBtn">
-    💾 Simpan Anggota
-  </button>
+    .banner h2 {
+        font-size: 20px;
+    }
 
-  <button type="button" id="batalBtn" hidden>
-    Batal Edit
-  </button>
+    .judul {
+        font-size: 18px;
+    }
 
-</form>
+    .form-card {
+        padding: 16px;
+    }
+}
+</style></head><body><div id="loading">
+    🌳 Memeriksa akses admin...
+</div><div id="dashboard"><header>
+    <div class="header-inner">    <div class="logo">🌳</div>
 
-  </div>  <div class="card">
-    <h3>👨‍👩‍👧‍👦 Daftar Anggota Keluarga</h3><p id="jumlahAnggota">Memuat data...</p>
+    <div class="identitas">
+        <h1>DASHBOARD ADMIN</h1>
+        <p>KELUARGA BESAR IMAN SUKIYADI</p>
+    </div>
 
-<div id="daftarAnggota"></div>
+    <button class="keluar" id="logoutBtn">
+        Keluar
+    </button>
 
-  </div></div><footer>
-  Keluarga Besar Iman Sukiyadi
-</footer><script type="module" src="js/admin.js"></script></body>
+</div>
+
+</header><section class="banner">
+    <h2>Selamat Datang, Admin</h2>
+    <p>
+        Selamat datang di halaman pengelolaan website
+        Keluarga Besar Iman Sukiyadi.
+        Mari mengenal keluarga dan menjaga silaturahmi.
+    </p>
+</section><main class="container"><h2 class="judul">🌿 Pengelolaan Data Keluarga</h2>
+
+<section class="form-card">
+
+    <h3 id="judulForm" class="judul">
+        Tambah Anggota Keluarga
+    </h3>
+
+    <form id="anggotaForm">
+
+        <label for="nama">Nama Lengkap</label>
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama anggota"
+            required
+        >
+
+        <label for="jenisKelamin">Jenis Kelamin</label>
+        <select id="jenisKelamin" required>
+            <option value="">Pilih jenis kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
+
+        <label for="tanggalLahir">Tanggal Lahir</label>
+        <input
+            type="date"
+            id="tanggalLahir"
+        >
+
+        <label for="ayahId">Nama Ayah</label>
+        <select id="ayahId">
+            <option value="">Pilih ayah</option>
+        </select>
+
+        <label for="ibuId">Nama Ibu</label>
+        <select id="ibuId">
+            <option value="">Pilih ibu</option>
+        </select>
+
+        <div class="tombol">
+            <button type="submit" id="simpanBtn">
+                Simpan Data
+            </button>
+
+            <button type="button" id="batalBtn">
+                Batal
+            </button>
+        </div>
+
+    </form>
+
+</section>
+
+<h2 class="judul">📊 Ringkasan Data</h2>
+
+<section class="ringkasan">
+    <p>Jumlah Anggota Keluarga</p>
+    <div class="angka" id="jumlahAnggota">-</div>
+</section>
+
+<section class="daftar-card">
+
+    <h2 class="judul">👨‍👩‍👧‍👦 Daftar Anggota Keluarga</h2>
+
+    <div id="daftarAnggota">
+        Memuat data anggota...
+    </div>
+
+</section>
+
+</main><footer>
+    <strong>KELUARGA BESAR IMAN SUKIYADI</strong><br>
+    Mengenal keluarga, menjaga silaturahmi<br>
+    Halaman Pengelolaan Admin<br>
+    &copy; 2026 Keluarga Besar Iman Sukiyadi
+</footer></div><script type="module" src="js/admin.js"></script></body>
 </html>
