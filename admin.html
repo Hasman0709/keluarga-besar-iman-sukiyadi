@@ -3,180 +3,113 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin - Keluarga Besar Iman Sukiyadi</title><style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f1f5f9;
+  color:#1e293b;
 }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f1f5f9;
-  color: #1e293b;
+header{
+  background:#14532d;
+  color:white;
+  padding:20px 15px;
+  text-align:center;
 }
-
-header {
-  background: #14532d;
-  color: white;
-  padding: 20px 15px;
-  text-align: center;
+header h2{margin:0}
+header p{margin:7px 0 0}
+.container{
+  max-width:900px;
+  margin:20px auto;
+  padding:15px;
 }
-
-header h2 {
-  margin: 0;
+.card{
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px #0001;
 }
-
-header p {
-  margin: 7px 0 0;
+h3{color:#14532d;margin-top:0}
+input,select{
+  width:100%;
+  padding:12px;
+  margin:6px 0 13px;
+  border:1px solid #cbd5e1;
+  border-radius:7px;
+  font-size:15px;
 }
-
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 15px;
+label{font-weight:bold;font-size:14px}
+button{
+  border:0;
+  padding:11px 15px;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:14px;
+  margin:3px;
 }
-
-.card {
-  background: white;
-  padding: 18px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 8px #0001;
+button:disabled{opacity:.6;cursor:not-allowed}
+.simpan{background:#15803d;color:white}
+.batal{background:#64748b;color:white}
+.edit{background:#2563eb;color:white}
+.hapus{background:#dc2626;color:white}
+.kembali{background:#e2e8f0;color:#1e293b}
+.anggota{
+  border:1px solid #e2e8f0;
+  padding:12px;
+  border-radius:9px;
+  margin:10px 0;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
 }
-
-h3 {
-  color: #14532d;
-  margin-top: 0;
+.anggota img{
+  width:65px;
+  height:65px;
+  border-radius:8px;
+  object-fit:cover;
+  background:#e2e8f0;
 }
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin: 6px 0 13px;
-  border: 1px solid #cbd5e1;
-  border-radius: 7px;
-  font-size: 15px;
+.info{flex:1;min-width:120px}
+.info strong{display:block;overflow-wrap:anywhere}
+.kecil{font-size:13px;color:#64748b;margin-top:5px}
+.status{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:5px;
+  font-size:12px;
+  margin-top:5px;
 }
-
-label {
-  font-weight: bold;
-  font-size: 14px;
+.hidup{background:#dcfce7;color:#166534}
+.meninggal{background:#e2e8f0;color:#475569}
+#pesan{margin:12px 0;font-weight:bold;overflow-wrap:anywhere}
+#preview{
+  width:110px;
+  height:110px;
+  object-fit:cover;
+  display:none;
+  border-radius:8px;
+  margin:8px 0;
+  background:#e2e8f0;
 }
-
-button {
-  border: 0;
-  padding: 11px 15px;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 14px;
-  margin: 3px;
+.petunjuk{
+  color:#64748b;
+  font-size:12px;
+  margin-top:-8px;
+  margin-bottom:12px;
 }
-
-button:disabled {
-  opacity: .6;
-  cursor: not-allowed;
-}
-
-.simpan {
-  background: #15803d;
-  color: white;
-}
-
-.batal {
-  background: #64748b;
-  color: white;
-}
-
-.edit {
-  background: #2563eb;
-  color: white;
-}
-
-.hapus {
-  background: #dc2626;
-  color: white;
-}
-
-.kembali {
-  background: #e2e8f0;
-  color: #1e293b;
-}
-
-.anggota {
-  border: 1px solid #e2e8f0;
-  padding: 12px;
-  border-radius: 9px;
-  margin: 10px 0;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.anggota img {
-  width: 65px;
-  height: 65px;
-  border-radius: 8px;
-  object-fit: cover;
-  background: #e2e8f0;
-}
-
-.info {
-  flex: 1;
-  min-width: 120px;
-}
-
-.info strong {
-  display: block;
-  overflow-wrap: anywhere;
-}
-
-.kecil {
-  font-size: 13px;
-  color: #64748b;
-  margin-top: 5px;
-}
-
-#pesan {
-  margin: 12px 0;
-  font-weight: bold;
-  overflow-wrap: anywhere;
-}
-
-#preview {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  display: none;
-  border-radius: 8px;
-  margin: 8px 0;
-  background: #e2e8f0;
-}
-
-.petunjuk {
-  color: #64748b;
-  font-size: 12px;
-  margin-top: -8px;
-  margin-bottom: 12px;
-}
-
-@media(max-width:500px) {
-  .anggota {
-    align-items: flex-start;
-  }
-
-  .anggota img {
-    width: 55px;
-    height: 55px;
-  }
+@media(max-width:500px){
+  .anggota{align-items:flex-start}
+  .anggota img{width:55px;height:55px}
 }
 </style></head><body><header>
   <h2>KELOLA ANGGOTA</h2>
   <p>Keluarga Besar Iman Sukiyadi</p>
-</header><div class="container">  <div class="card"><button class="kembali" onclick="location.href='index.html'">
-  ← Kembali ke Beranda
-</button>
-
-<h3 id="judulForm">Tambah Anggota Keluarga</h3>
+</header><div class="container">  <div class="card">
+    <button class="kembali" onclick="location.href='index.html'">
+      ← Kembali ke Beranda
+    </button><h3 id="judulForm">Tambah Anggota Keluarga</h3>
 
 <form id="formAnggota">
 
@@ -188,6 +121,12 @@ button:disabled {
     <option value="">Pilih jenis kelamin</option>
     <option value="Laki-laki">Laki-laki</option>
     <option value="Perempuan">Perempuan</option>
+  </select>
+
+  <label>Status Kehidupan</label>
+  <select id="statusHidup" required>
+    <option value="Hidup">Hidup</option>
+    <option value="Meninggal">Meninggal</option>
   </select>
 
   <label>Nama Ayah</label>
@@ -224,9 +163,8 @@ button:disabled {
 
 <div id="pesan"></div>
 
-  </div>  <div class="card"><h3>Daftar Anggota Keluarga</h3>
-
-<input id="pencarian" type="search"
+  </div>  <div class="card">
+    <h3>Daftar Anggota Keluarga</h3><input id="pencarian" type="search"
        placeholder="Cari nama anggota...">
 
 <div id="daftar">Memuat data anggota...</div>
@@ -251,7 +189,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
 const koleksi = collection(db, "anggota");
-
 const ADMIN_UID = "9h5mI5smFLXFYs6pK7wlTrsUJV83";
 
 let dataAnggota = [];
@@ -261,20 +198,19 @@ let urlPreview = "";
 
 const $ = id => document.getElementById(id);
 
-function pesan(teks, warna = "green") {
+function pesan(teks, warna="green"){
   $("pesan").textContent = teks;
   $("pesan").style.color = warna;
 }
 
-// Memeriksa akun admin
+// Pemeriksaan admin
 onAuthStateChanged(auth, async user => {
-
-  if (!user) {
+  if(!user){
     location.href = "login.html";
     return;
   }
 
-  if (user.uid !== ADMIN_UID) {
+  if(user.uid !== ADMIN_UID){
     alert("Akun ini tidak memiliki akses admin.");
     await signOut(auth);
     location.href = "login.html";
@@ -282,40 +218,32 @@ onAuthStateChanged(auth, async user => {
   }
 
   await muatAnggota();
-
 });
 
 // Memuat data anggota
-async function muatAnggota() {
-
+async function muatAnggota(){
   $("daftar").textContent = "Memuat data anggota...";
 
-  try {
-
+  try{
     const snapshot = await getDocs(koleksi);
 
     dataAnggota = snapshot.docs.map(item => ({
-      id: item.id,
+      id:item.id,
       ...item.data()
     }));
 
     isiPilihanOrang();
     tampilkanAnggota();
 
-  } catch (error) {
-
+  }catch(error){
     $("daftar").textContent =
       "Gagal memuat data: " + error.message;
-
   }
-
 }
 
-// Mengisi pilihan ayah dan ibu
-function isiPilihanOrang() {
-
-  ["ayahId", "ibuId"].forEach(id => {
-
+// Pilihan ayah dan ibu
+function isiPilihanOrang(){
+  ["ayahId","ibuId"].forEach(id => {
     const select = $(id);
     const nilaiLama = select.value;
 
@@ -324,76 +252,60 @@ function isiPilihanOrang() {
     const kosong = document.createElement("option");
     kosong.value = "";
     kosong.textContent = "Tidak diketahui / Kosong";
-
     select.appendChild(kosong);
 
     dataAnggota
       .slice()
-      .sort((a,b) =>
-        (a.nama || "").localeCompare(b.nama || "")
-      )
-      .forEach(a => {
-
+      .sort((a,b)=>(a.nama||"").localeCompare(b.nama||""))
+      .forEach(a=>{
         const option = document.createElement("option");
-
         option.value = a.id;
         option.textContent = a.nama || "(Tanpa nama)";
 
-        // Jangan memilih dirinya sendiri sebagai orang tua
-        if (a.id === idEdit) {
+        if(a.id === idEdit){
           option.disabled = true;
         }
 
         select.appendChild(option);
-
       });
 
     select.value = nilaiLama;
-
   });
-
 }
 
 // Menampilkan daftar anggota
-function tampilkanAnggota() {
-
-  const kata = $("pencarian").value
-    .trim()
-    .toLowerCase();
+function tampilkanAnggota(){
+  const kata = $("pencarian").value.trim().toLowerCase();
 
   const hasil = dataAnggota.filter(a =>
-    (a.nama || "").toLowerCase().includes(kata)
+    (a.nama||"").toLowerCase().includes(kata)
   );
 
   $("daftar").innerHTML = "";
 
-  if (hasil.length === 0) {
+  if(hasil.length === 0){
     $("daftar").textContent = "Anggota tidak ditemukan.";
     return;
   }
 
-  hasil.sort((a,b) =>
-    (a.nama || "").localeCompare(b.nama || "")
+  hasil.sort((a,b)=>
+    (a.nama||"").localeCompare(b.nama||"")
   );
 
-  hasil.forEach(a => {
-
+  hasil.forEach(a=>{
     const item = document.createElement("div");
     item.className = "anggota";
 
     const gambar = document.createElement("img");
-
     gambar.alt = "Foto anggota";
 
-    if (a.fotoUrl) {
+    if(a.fotoUrl){
       gambar.src = a.fotoUrl;
-    } else {
+    }else{
       gambar.style.display = "none";
     }
 
-    gambar.onerror = () => {
-      gambar.style.display = "none";
-    };
+    gambar.onerror = ()=>gambar.style.display="none";
 
     const info = document.createElement("div");
     info.className = "info";
@@ -403,137 +315,100 @@ function tampilkanAnggota() {
 
     const detail = document.createElement("div");
     detail.className = "kecil";
+    detail.textContent = a.jenisKelamin || "-";
 
-    detail.textContent =
-      a.jenisKelamin || "-";
+    const status = document.createElement("span");
+    const statusHidup = a.statusHidup || "Hidup";
 
-    info.append(nama, detail);
+    status.className = "status " +
+      (statusHidup === "Meninggal" ? "meninggal" : "hidup");
+
+    status.textContent = statusHidup;
+
+    info.append(nama,detail,status);
 
     const tombolEdit = document.createElement("button");
-
     tombolEdit.className = "edit";
     tombolEdit.textContent = "Edit";
-    tombolEdit.onclick = () => mulaiEdit(a.id);
+    tombolEdit.onclick = ()=>mulaiEdit(a.id);
 
     const tombolHapus = document.createElement("button");
-
     tombolHapus.className = "hapus";
     tombolHapus.textContent = "Hapus";
-    tombolHapus.onclick = () =>
-      hapusAnggota(a.id, a.nama);
+    tombolHapus.onclick = ()=>hapusAnggota(a.id,a.nama);
 
-    item.append(
-      gambar,
-      info,
-      tombolEdit,
-      tombolHapus
-    );
-
+    item.append(gambar,info,tombolEdit,tombolHapus);
     $("daftar").appendChild(item);
-
   });
-
 }
 
-$("pencarian").addEventListener(
-  "input",
-  tampilkanAnggota
-);
+$("pencarian").addEventListener("input",tampilkanAnggota);
 
-// Menghapus URL pratinjau sementara
-function hapusUrlPreview() {
-
-  if (urlPreview) {
+// Membersihkan URL pratinjau
+function hapusUrlPreview(){
+  if(urlPreview){
     URL.revokeObjectURL(urlPreview);
     urlPreview = "";
   }
-
 }
 
-// Pratinjau foto dari galeri
-$("foto").addEventListener("change", () => {
-
+// Pratinjau foto
+$("foto").addEventListener("change",()=>{
   const file = $("foto").files[0];
 
   hapusUrlPreview();
 
-  if (!file) return;
+  if(!file) return;
 
-  if (!file.type.startsWith("image/")) {
-    pesan("File harus berupa gambar.", "red");
+  if(!file.type.startsWith("image/")){
+    pesan("File harus berupa gambar.","red");
     $("foto").value = "";
     return;
   }
 
   urlPreview = URL.createObjectURL(file);
-
   $("preview").src = urlPreview;
   $("preview").style.display = "block";
-
 });
 
 // Kompres foto menjadi Base64
-async function prosesFoto(file) {
+async function prosesFoto(file){
+  if(!file) return null;
 
-  if (!file) return null;
-
-  if (!file.type.startsWith("image/")) {
+  if(!file.type.startsWith("image/")){
     throw new Error("File harus berupa gambar.");
   }
 
   const gambar = new Image();
   const url = URL.createObjectURL(file);
 
-  try {
-
-    await new Promise((resolve, reject) => {
-
+  try{
+    await new Promise((resolve,reject)=>{
       gambar.onload = resolve;
       gambar.onerror = reject;
       gambar.src = url;
-
     });
 
     const batas = 600;
-
     const skala = Math.min(
       1,
-      batas / Math.max(gambar.width, gambar.height)
+      batas/Math.max(gambar.width,gambar.height)
     );
 
     const canvas = document.createElement("canvas");
-
-    canvas.width = Math.max(
-      1,
-      Math.round(gambar.width * skala)
-    );
-
-    canvas.height = Math.max(
-      1,
-      Math.round(gambar.height * skala)
-    );
+    canvas.width = Math.max(1,Math.round(gambar.width*skala));
+    canvas.height = Math.max(1,Math.round(gambar.height*skala));
 
     const ctx = canvas.getContext("2d");
+    ctx.drawImage(gambar,0,0,canvas.width,canvas.height);
 
-    ctx.drawImage(
-      gambar,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    const hasil = canvas.toDataURL("image/jpeg",0.65);
 
-    const hasil = canvas.toDataURL(
-      "image/jpeg",
-      0.65
-    );
-
-    // Perkiraan ukuran Base64 dalam byte
     const ukuran = Math.ceil(
-      (hasil.length - "data:image/jpeg;base64,".length) * 3 / 4
+      (hasil.length-"data:image/jpeg;base64,".length)*3/4
     );
 
-    if (ukuran > 700000) {
+    if(ukuran > 700000){
       throw new Error(
         "Ukuran foto masih terlalu besar. Gunakan foto lain."
       );
@@ -541,189 +416,125 @@ async function prosesFoto(file) {
 
     return hasil;
 
-  } finally {
-
+  }finally{
     URL.revokeObjectURL(url);
-
   }
-
 }
 
-// Menyimpan anggota
-$("formAnggota").addEventListener(
-  "submit",
-  async event => {
+// Simpan anggota
+$("formAnggota").addEventListener("submit",async event=>{
+  event.preventDefault();
 
-    event.preventDefault();
+  const tombol = $("tombolSimpan");
+  tombol.disabled = true;
+  pesan("Sedang menyimpan data...");
 
-    const tombol = $("tombolSimpan");
+  try{
+    const file = $("foto").files[0];
+    let fotoUrl = fotoLama;
 
-    tombol.disabled = true;
-
-    pesan("Sedang menyimpan data...");
-
-    try {
-
-      const file = $("foto").files[0];
-
-      let fotoUrl = fotoLama;
-
-      if (file) {
-        fotoUrl = await prosesFoto(file);
-      }
-
-      const data = {
-
-        nama: $("nama").value.trim(),
-
-        jenisKelamin:
-          $("jenisKelamin").value,
-
-        ayahId:
-          $("ayahId").value,
-
-        ibuId:
-          $("ibuId").value,
-
-        fotoUrl:
-          fotoUrl || ""
-
-      };
-
-      if (!data.nama) {
-        throw new Error("Nama anggota wajib diisi.");
-      }
-
-      if (idEdit) {
-
-        await updateDoc(
-          doc(db, "anggota", idEdit),
-          {
-            ...data,
-            tanggalLahir: deleteField(),
-            diperbarui: new Date()
-          }
-        );
-
-        pesan("Data anggota berhasil diperbarui.");
-
-      } else {
-
-        await addDoc(koleksi, {
-          ...data,
-          dibuat: new Date()
-        });
-
-        pesan("Anggota baru berhasil ditambahkan.");
-
-      }
-
-      resetForm();
-
-      await muatAnggota();
-
-    } catch (error) {
-
-      pesan(
-        "Gagal menyimpan: " + error.message,
-        "red"
-      );
-
-    } finally {
-
-      tombol.disabled = false;
-
+    if(file){
+      fotoUrl = await prosesFoto(file);
     }
 
+    const data = {
+      nama:$("nama").value.trim(),
+      jenisKelamin:$("jenisKelamin").value,
+      statusHidup:$("statusHidup").value,
+      ayahId:$("ayahId").value,
+      ibuId:$("ibuId").value,
+      fotoUrl:fotoUrl || ""
+    };
+
+    if(!data.nama){
+      throw new Error("Nama anggota wajib diisi.");
+    }
+
+    if(idEdit){
+      await updateDoc(doc(db,"anggota",idEdit),{
+        ...data,
+        tanggalLahir:deleteField(),
+        diperbarui:new Date()
+      });
+
+      pesan("Data anggota berhasil diperbarui.");
+
+    }else{
+      await addDoc(koleksi,{
+        ...data,
+        dibuat:new Date()
+      });
+
+      pesan("Anggota baru berhasil ditambahkan.");
+    }
+
+    resetForm();
+    await muatAnggota();
+
+  }catch(error){
+    pesan("Gagal menyimpan: "+error.message,"red");
+  }finally{
+    tombol.disabled = false;
   }
-);
+});
 
-// Mengedit anggota
-function mulaiEdit(id) {
-
-  const a = dataAnggota.find(
-    item => item.id === id
-  );
-
-  if (!a) return;
+// Edit anggota
+function mulaiEdit(id){
+  const a = dataAnggota.find(item=>item.id===id);
+  if(!a) return;
 
   idEdit = id;
-
   fotoLama = a.fotoUrl || "";
 
   $("nama").value = a.nama || "";
-
-  $("jenisKelamin").value =
-    a.jenisKelamin || "";
+  $("jenisKelamin").value = a.jenisKelamin || "";
+  $("statusHidup").value = a.statusHidup || "Hidup";
 
   isiPilihanOrang();
 
   $("ayahId").value = a.ayahId || "";
   $("ibuId").value = a.ibuId || "";
 
-  if (fotoLama) {
-
+  if(fotoLama){
     $("preview").src = fotoLama;
     $("preview").style.display = "block";
-
-  } else {
-
+  }else{
     $("preview").src = "";
     $("preview").style.display = "none";
-
   }
 
-  $("judulForm").textContent =
-    "Edit Anggota Keluarga";
+  $("judulForm").textContent = "Edit Anggota Keluarga";
+  $("tombolSimpan").textContent = "Simpan Perubahan";
+  $("tombolBatal").style.display = "inline-block";
 
-  $("tombolSimpan").textContent =
-    "Simpan Perubahan";
-
-  $("tombolBatal").style.display =
-    "inline-block";
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-// Menghapus anggota
-async function hapusAnggota(id, nama) {
-
+// Hapus anggota
+async function hapusAnggota(id,nama){
   const yakin = confirm(
-    "Apakah yakin ingin menghapus data " + nama + "?"
+    "Apakah yakin ingin menghapus data "+nama+"?"
   );
 
-  if (!yakin) return;
+  if(!yakin) return;
 
-  try {
-
-    await deleteDoc(doc(db, "anggota", id));
-
+  try{
+    await deleteDoc(doc(db,"anggota",id));
     pesan("Data anggota berhasil dihapus.");
 
-    if (idEdit === id) {
+    if(idEdit===id){
       resetForm();
     }
 
     await muatAnggota();
 
-  } catch (error) {
-
-    pesan(
-      "Gagal menghapus: " + error.message,
-      "red"
-    );
-
+  }catch(error){
+    pesan("Gagal menghapus: "+error.message,"red");
   }
-
 }
 
-// Mengosongkan form
-function resetForm() {
-
+// Reset form
+function resetForm(){
   $("formAnggota").reset();
 
   idEdit = null;
@@ -734,23 +545,14 @@ function resetForm() {
   $("preview").src = "";
   $("preview").style.display = "none";
 
-  $("judulForm").textContent =
-    "Tambah Anggota Keluarga";
-
-  $("tombolSimpan").textContent =
-    "Simpan Anggota";
-
-  $("tombolBatal").style.display =
-    "none";
+  $("judulForm").textContent = "Tambah Anggota Keluarga";
+  $("tombolSimpan").textContent = "Simpan Anggota";
+  $("tombolBatal").style.display = "none";
 
   isiPilihanOrang();
-
 }
 
-$("tombolBatal").addEventListener(
-  "click",
-  resetForm
-);
+$("tombolBatal").addEventListener("click",resetForm);
 
 </script></body>
 </html>
