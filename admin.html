@@ -3,702 +3,360 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard Admin - Keluarga Besar Iman Sukiyadi</title><style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f0f7f1;color:#26352d}
+header{background:linear-gradient(135deg,#064d2d,#16834c);color:white;padding:20px 15px;border-bottom:5px solid #a5df62}
+.header-inner{max-width:950px;margin:auto;display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:50%;background:white;color:#145c3b;display:flex;align-items:center;justify-content:center;font-size:27px;flex-shrink:0}
+.identitas{flex:1}
+.identitas h1{font-size:17px;margin-bottom:5px}
+.identitas p{font-size:11px}
+.keluar{background:white;color:#145c3b;border:0;padding:10px 13px;border-radius:8px;font-weight:bold}
+.container{width:92%;max-width:950px;margin:22px auto}
+.banner{padding:25px 20px;border-radius:14px;color:white;background:linear-gradient(90deg,rgba(5,65,35,.9),rgba(12,110,58,.65)),url("https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200");background-size:cover;background-position:center;margin-bottom:25px}
+.banner h2{font-size:22px;margin-bottom:10px}
+.banner p{font-size:14px;line-height:1.6}
+.judul{color:#145c3b;font-size:19px;margin-bottom:14px}
+.statistik{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:25px}
+.stat-card,.form-card,.daftar-card{background:white;padding:18px;border-radius:12px;box-shadow:0 2px 9px #00000012;margin-bottom:22px}
+.angka{font-size:28px;font-weight:bold;color:#16834c;margin-bottom:6px}
+.stat-card p{font-size:13px;color:#68756d}
+label{display:block;font-size:14px;font-weight:bold;color:#315b43;margin:13px 0 7px}
+input,select{width:100%;padding:12px;border:1px solid #cbded0;border-radius:8px;font-size:14px;background:#fbfefb}
+.tombol{display:flex;gap:10px;margin-top:20px}
+.tombol button{flex:1;padding:13px;border:0;border-radius:8px;font-weight:bold}
+#simpanBtn{background:#16834c;color:white}
+#batalBtn{background:#e7eee9;color:#315b43}
+.pesan{padding:12px;margin-bottom:15px;border-radius:8px;background:#eaf5ee;color:#145c3b;font-size:13px;display:none;overflow-wrap:anywhere}
+.cari{margin-bottom:15px}
+.anggota-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #e5eee7}
+.foto{width:58px;height:58px;border-radius:50%;object-fit:cover;background:#e7f2e9;flex-shrink:0}
+.info-anggota{flex:1;min-width:0}
+.info-anggota strong{color:#145c3b;display:block;margin-bottom:5px;overflow-wrap:anywhere}
+.info-anggota p{font-size:12px;color:#68756d;overflow-wrap:anywhere}
+.aksi{display:flex;gap:6px;margin-top:8px}
+.aksi button{border:0;border-radius:6px;padding:7px 10px;font-weight:bold}
+.btn-edit{background:#e6f2e9;color:#145c3b}
+.btn-hapus{background:#ffe9e9;color:#bd2929}
+footer{background:linear-gradient(135deg,#064d2d,#126b3c);color:white;text-align:center;padding:25px 12px;margin-top:40px;border-top:5px solid #a5df62;font-size:12px;line-height:1.9}
+#loading{text-align:center;padding:60px 15px;color:#145c3b;font-weight:bold}
+#dashboard{display:none}
+@media(max-width:480px){
+.identitas h1{font-size:13px}
+.identitas p{font-size:9px}
+.logo{width:42px;height:42px;font-size:23px}
+.keluar{padding:9px;font-size:12px}
+.banner h2{font-size:19px}
+.form-card,.daftar-card{padding:14px}
+.anggota-item{gap:9px}
+.foto{width:48px;height:48px}
+.aksi button{padding:7px 8px;font-size:11px}
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f0f7f1;
-    color: #26352d;
-}
-
-header {
-    background: linear-gradient(135deg, #064d2d, #16834c);
-    color: white;
-    padding: 22px 16px;
-    border-bottom: 5px solid #a5df62;
-}
-
-.header-inner {
-    max-width: 950px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: white;
-    color: #145c3b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    flex-shrink: 0;
-}
-
-.identitas {
-    flex: 1;
-}
-
-.identitas h1 {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.identitas p {
-    font-size: 11px;
-}
-
-.keluar {
-    background: white;
-    color: #145c3b;
-    border: none;
-    padding: 11px 13px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.container {
-    width: 92%;
-    max-width: 950px;
-    margin: 22px auto;
-}
-
-.banner {
-    padding: 25px 20px;
-    border-radius: 14px;
-    color: white;
-    background:
-        linear-gradient(90deg, rgba(5,65,35,.88), rgba(12,110,58,.65)),
-        url("https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200");
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 25px;
-}
-
-.banner h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.banner p {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.judul {
-    color: #145c3b;
-    font-size: 19px;
-    margin-bottom: 14px;
-}
-
-.statistik {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 27px;
-}
-
-.stat-card {
-    background: white;
-    padding: 18px;
-    border-radius: 12px;
-    box-shadow: 0 2px 9px #00000012;
-}
-
-.angka {
-    font-size: 28px;
-    font-weight: bold;
-    color: #16834c;
-    margin-bottom: 6px;
-}
-
-.stat-card p {
-    font-size: 13px;
-    color: #68756d;
-}
-
-.form-card,
-.daftar-card {
-    background: white;
-    padding: 20px;
-    border-radius: 13px;
-    box-shadow: 0 2px 10px #00000012;
-    margin-bottom: 25px;
-}
-
-.form-card label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    color: #315b43;
-    margin: 13px 0 7px;
-}
-
-.form-card input,
-.form-card select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #cbded0;
-    border-radius: 8px;
-    font-size: 14px;
-    background: #fbfefb;
-}
-
-.tombol {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.tombol button {
-    flex: 1;
-    padding: 13px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#simpanBtn {
-    background: #16834c;
-    color: white;
-}
-
-#batalBtn {
-    background: #e7eee9;
-    color: #315b43;
-}
-
-.anggota-item {
-    padding: 14px 0;
-    border-bottom: 1px solid #e5eee7;
-}
-
-.anggota-item:last-child {
-    border-bottom: none;
-}
-
-.anggota-item strong {
-    color: #145c3b;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.anggota-item p {
-    font-size: 13px;
-    color: #68756d;
-    margin-bottom: 9px;
-}
-
-.aksi {
-    display: flex;
-    gap: 8px;
-}
-
-.aksi button {
-    border: none;
-    border-radius: 6px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-edit {
-    background: #e6f2e9;
-    color: #145c3b;
-}
-
-.btn-hapus {
-    background: #ffe9e9;
-    color: #bd2929;
-}
-
-.pesan {
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    background: #eaf5ee;
-    color: #145c3b;
-    font-size: 13px;
-    display: none;
-}
-
-footer {
-    background: linear-gradient(135deg, #064d2d, #126b3c);
-    color: white;
-    text-align: center;
-    padding: 25px 12px;
-    margin-top: 40px;
-    border-top: 5px solid #a5df62;
-    font-size: 12px;
-    line-height: 1.9;
-}
-
-#loading {
-    text-align: center;
-    padding: 60px 15px;
-    color: #145c3b;
-    font-weight: bold;
-}
-
-#dashboard {
-    display: none;
-}
-
-@media(max-width:480px) {
-    .identitas h1 {
-        font-size: 14px;
-    }
-
-    .identitas p {
-        font-size: 9px;
-    }
-
-    .logo {
-        width: 45px;
-        height: 45px;
-        font-size: 25px;
-    }
-
-    .keluar {
-        padding: 9px;
-        font-size: 12px;
-    }
-
-    .statistik {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .stat-card {
-        padding: 14px;
-    }
-
-    .banner h2 {
-        font-size: 19px;
-    }
-
-    .form-card,
-    .daftar-card {
-        padding: 15px;
-    }
-}
-</style></head><body><div id="loading">
-    🌳 Memeriksa akses admin...
-</div><div id="dashboard"><header>
-    <div class="header-inner">
-        <div class="logo">🌳</div>    <div class="identitas">
-        <h1>DASHBOARD ADMIN</h1>
-        <p>KELUARGA BESAR IMAN SUKIYADI</p>
-    </div>
-
-    <button class="keluar" id="logoutBtn">
-        Keluar
-    </button>
+</style></head><body><div id="loading">🌳 Memeriksa akses admin...</div><div id="dashboard"><header>
+<div class="header-inner">
+<div class="logo">🌳</div>
+<div class="identitas">
+<h1>DASHBOARD ADMIN</h1>
+<p>KELUARGA BESAR IMAN SUKIYADI</p>
 </div>
-
+<button class="keluar" id="logoutBtn">Keluar</button>
+</div>
 </header><main class="container"><section class="banner">
-    <h2>Selamat Datang, Admin</h2>
-    <p>
-        Selamat datang di halaman pengelolaan website
-        Keluarga Besar Iman Sukiyadi.
-        Mengenal keluarga, menjaga silaturahmi.
-    </p>
-</section><h2 class="judul">📊 Ringkasan Data</h2><section class="statistik">
-    <div class="stat-card">
-        <div class="angka" id="jumlahAnggota">-</div>
-        <p>Jumlah Anggota Keluarga</p>
-    </div><div class="stat-card">
-    <div class="angka">Aktif</div>
-    <p>Status Dashboard Admin</p>
+<h2>Selamat Datang, Admin</h2>
+<p>Halaman pengelolaan Keluarga Besar Iman Sukiyadi.<br>Mengenal keluarga, menjaga silaturahmi.</p>
+</section><h2 class="judul">📊 Ringkasan Data</h2>
+<section class="statistik">
+<div class="stat-card">
+<div class="angka" id="jumlahAnggota">-</div>
+<p>Jumlah Anggota Keluarga</p>
 </div>
+<div class="stat-card">
+<div class="angka">Aktif</div>
+<p>Status Dashboard Admin</p>
+</div>
+</section><h2 class="judul" id="judulForm">👨‍👩‍👧‍👦 Tambah Anggota Keluarga</h2><section class="form-card">
+<div class="pesan" id="pesan"></div><form id="anggotaForm">
+<input type="hidden" id="anggotaId"><label for="nama">Nama Lengkap</label>
+<input type="text" id="nama" required placeholder="Masukkan nama anggota">
 
-</section><h2 class="judul">👨‍👩‍👧‍👦 Tambah Anggota Keluarga</h2><section class="form-card"><div class="pesan" id="pesan"></div>
+<label for="jenisKelamin">Jenis Kelamin</label>
+<select id="jenisKelamin" required>
 
-<form id="anggotaForm">
+<option value="">Pilih jenis kelamin</option>
+<option value="Laki-laki">Laki-laki</option>
+<option value="Perempuan">Perempuan</option>
+</select><label for="fotoUrl">Foto Profil (URL foto)</label>
+<input type="url" id="fotoUrl" placeholder="Tempel alamat URL foto di sini">
 
-    <input type="hidden" id="anggotaId">
+<label for="ayahId">Nama Ayah</label>
+<select id="ayahId"><option value="">Pilih ayah</option></select>
 
-    <label for="nama">Nama Lengkap</label>
-    <input type="text" id="nama" required
-           placeholder="Masukkan nama anggota">
+<label for="ibuId">Nama Ibu</label>
+<select id="ibuId"><option value="">Pilih ibu</option></select>
 
-    <label for="jenisKelamin">Jenis Kelamin</label>
-    <select id="jenisKelamin" required>
-        <option value="">Pilih jenis kelamin</option>
-        <option value="Laki-laki">Laki-laki</option>
-        <option value="Perempuan">Perempuan</option>
-    </select>
-
-    <label for="tanggalLahir">Tanggal Lahir</label>
-    <input type="date" id="tanggalLahir">
-
-    <label for="ayahId">Nama Ayah</label>
-    <select id="ayahId">
-        <option value="">Pilih ayah</option>
-    </select>
-
-    <label for="ibuId">Nama Ibu</label>
-    <select id="ibuId">
-        <option value="">Pilih ibu</option>
-    </select>
-
-    <div class="tombol">
-        <button type="submit" id="simpanBtn">
-            Simpan Data
-        </button>
-
-        <button type="button" id="batalBtn">
-            Batal
-        </button>
-    </div>
-
+<div class="tombol">
+<button type="submit" id="simpanBtn">Simpan Data</button>
+<button type="button" id="batalBtn">Batal</button>
+</div>
 </form>
-
-</section><h2 class="judul">📋 Daftar Anggota Keluarga</h2><section class="daftar-card">
-    <div id="daftarAnggota">
-        Memuat data anggota...
-    </div>
+</section><h2 class="judul">📋 Daftar Anggota Keluarga</h2>
+<section class="daftar-card">
+<input type="search" id="cariAnggota" class="cari" placeholder="🔍 Cari nama anggota keluarga...">
+<div id="daftarAnggota">Memuat data anggota...</div>
 </section></main><footer>
-    <strong>KELUARGA BESAR IMAN SUKIYADI</strong><br>
-    Mengenal keluarga, menjaga silaturahmi<br>
-    Halaman Pengelolaan Admin<br>
-    &copy; 2026 Iman Sukiyadi
+<strong>KELUARGA BESAR IMAN SUKIYADI</strong><br>
+Mengenal keluarga, menjaga silaturahmi<br>
+Halaman Pengelolaan Admin<br>
+&copy; 2026 Iman Sukiyadi
 </footer></div><script type="module">
-import { auth, db } from "./js/firebase.js";
+import {auth,db} from "./js/firebase.js";
 
 import {
-    onAuthStateChanged,
-    signOut
+onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
 import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc
+collection,getDocs,addDoc,updateDoc,deleteDoc,doc,deleteField
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
-/* IDENTITAS ADMIN */
-const ADMIN_UID = "9h5mI5smFLXFYs6pK7wlTrsUJV83";
+const ADMIN_UID="9h5mI5smFLXFYs6pK7wlTrsUJV83";
 
-/* ELEMEN HALAMAN */
-const loading = document.getElementById("loading");
-const dashboard = document.getElementById("dashboard");
-const form = document.getElementById("anggotaForm");
-const daftar = document.getElementById("daftarAnggota");
-const jumlah = document.getElementById("jumlahAnggota");
-const pesan = document.getElementById("pesan");
+const el=id=>document.getElementById(id);
+const form=el("anggotaForm");
+const daftar=el("daftarAnggota");
+const pesan=el("pesan");
 
-const nama = document.getElementById("nama");
-const jenisKelamin = document.getElementById("jenisKelamin");
-const tanggalLahir = document.getElementById("tanggalLahir");
-const ayahId = document.getElementById("ayahId");
-const ibuId = document.getElementById("ibuId");
-const anggotaId = document.getElementById("anggotaId");
+let dataAnggota=[];
 
-let dataAnggota = [];
-let sedangMemuat = false;
-
-/* PESAN */
-function tampilPesan(teks) {
-    pesan.textContent = teks;
-    pesan.style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+function tampilPesan(teks){
+pesan.textContent=teks;
+pesan.style.display="block";
 }
 
-function sembunyikanPesan() {
-    pesan.style.display = "none";
+function sembunyikanPesan(){
+pesan.style.display="none";
 }
 
-/* PEMERIKSAAN LOGIN */
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth,async user=>{
+if(!user){
+window.location.replace("login.html");
+return;
+}
 
-    if (sedangMemuat) return;
-    sedangMemuat = true;
+if(user.uid!==ADMIN_UID){
+await signOut(auth);
+window.location.replace("login.html");
+return;
+}
 
-    if (!user) {
-        window.location.replace("login.html");
-        return;
-    }
+el("loading").style.display="none";
+el("dashboard").style.display="block";
 
-    if (user.uid !== ADMIN_UID) {
-        await signOut(auth);
-        window.location.replace("login.html");
-        return;
-    }
-
-    loading.style.display = "none";
-    dashboard.style.display = "block";
-
-    try {
-        await muatAnggota();
-    } catch (error) {
-        console.error(error);
-        daftar.textContent = "Gagal memuat data: " + error.message;
-    }
+try{
+await muatAnggota();
+}catch(error){
+daftar.textContent="Gagal memuat data: "+error.message;
+}
 });
 
-/* MEMUAT DATA ANGGOTA */
-async function muatAnggota() {
+async function muatAnggota(){
+const snapshot=await getDocs(collection(db,"anggota"));
 
-    const snapshot = await getDocs(collection(db, "anggota"));
+dataAnggota=snapshot.docs.map(d=>({
+id:d.id,...d.data()
+}));
 
-    dataAnggota = snapshot.docs.map(d => ({
-        id: d.id,
-        ...d.data()
-    }));
-
-    jumlah.textContent = dataAnggota.length;
-
-    tampilkanDaftar();
-    isiPilihanOrangTua();
+el("jumlahAnggota").textContent=dataAnggota.length;
+isiPilihanOrangTua();
+tampilkanDaftar();
 }
 
-/* MENAMPILKAN DAFTAR */
-function tampilkanDaftar() {
+function isiPilihanOrangTua(){
+const ayah=el("ayahId");
+const ibu=el("ibuId");
 
-    daftar.innerHTML = "";
+const nilaiAyah=ayah.value;
+const nilaiIbu=ibu.value;
 
-    if (dataAnggota.length === 0) {
-        daftar.textContent = "Belum ada data anggota keluarga.";
-        return;
-    }
+ayah.innerHTML='<option value="">Pilih ayah</option>';
+ibu.innerHTML='<option value="">Pilih ibu</option>';
 
-    dataAnggota.sort((a, b) =>
-        (a.nama || "").localeCompare(b.nama || "", "id")
-    );
+dataAnggota.forEach(o=>{
+if(o.id===el("anggotaId").value)return;
 
-    dataAnggota.forEach(orang => {
+const option=document.createElement("option");
+option.value=o.id;
+option.textContent=o.nama||"Tanpa nama";
 
-        const item = document.createElement("div");
-        item.className = "anggota-item";
-
-        const namaEl = document.createElement("strong");
-        namaEl.textContent = orang.nama || "Tanpa nama";
-
-        const info = document.createElement("p");
-        info.textContent =
-            (orang.jenisKelamin || "-") +
-            " • " +
-            (orang.tanggalLahir || "Tanggal lahir tidak diisi");
-
-        const aksi = document.createElement("div");
-        aksi.className = "aksi";
-
-        const edit = document.createElement("button");
-        edit.className = "btn-edit";
-        edit.textContent = "Edit";
-        edit.addEventListener("click", () => editAnggota(orang.id));
-
-        const hapus = document.createElement("button");
-        hapus.className = "btn-hapus";
-        hapus.textContent = "Hapus";
-        hapus.addEventListener("click", () => hapusAnggota(orang.id));
-
-        aksi.append(edit, hapus);
-        item.append(namaEl, info, aksi);
-        daftar.appendChild(item);
-    });
-}
-
-/* PILIHAN AYAH DAN IBU */
-function isiPilihanOrangTua() {
-
-    const nilaiAyah = ayahId.value;
-    const nilaiIbu = ibuId.value;
-
-    ayahId.innerHTML = '<option value="">Pilih ayah</option>';
-    ibuId.innerHTML = '<option value="">Pilih ibu</option>';
-
-    dataAnggota.forEach(orang => {
-
-        if (orang.id === anggotaId.value) return;
-
-        const option = document.createElement("option");
-        option.value = orang.id;
-        option.textContent = orang.nama || "Tanpa nama";
-
-        if (orang.jenisKelamin === "Laki-laki") {
-            ayahId.appendChild(option);
-        }
-
-        if (orang.jenisKelamin === "Perempuan") {
-            ibuId.appendChild(option.cloneNode(true));
-        }
-    });
-
-    ayahId.value = nilaiAyah;
-    ibuId.value = nilaiIbu;
-}
-
-/* EDIT ANGGOTA */
-function editAnggota(id) {
-
-    const orang = dataAnggota.find(a => a.id === id);
-    if (!orang) return;
-
-    anggotaId.value = orang.id;
-    nama.value = orang.nama || "";
-    jenisKelamin.value = orang.jenisKelamin || "";
-    tanggalLahir.value = orang.tanggalLahir || "";
-
-    ayahId.value = orang.ayahId || "";
-    ibuId.value = orang.ibuId || "";
-
-    isiPilihanOrangTua();
-
-    ayahId.value = orang.ayahId || "";
-    ibuId.value = orang.ibuId || "";
-
-    document.getElementById("judulForm").textContent =
-        "Edit Anggota Keluarga";
-
-    document.getElementById("simpanBtn").textContent =
-        "Perbarui Data";
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-/* SIMPAN DAN PERBARUI */
-form.addEventListener("submit", async (e) => {
-
-    e.preventDefault();
-    sembunyikanPesan();
-
-    const data = {
-        nama: nama.value.trim(),
-        jenisKelamin: jenisKelamin.value,
-        tanggalLahir: tanggalLahir.value,
-        ayahId: ayahId.value,
-        ibuId: ibuId.value
-    };
-
-    if (!data.nama) {
-        tampilPesan("Nama anggota wajib diisi.");
-        return;
-    }
-
-    if (data.ayahId && data.ayahId === data.ibuId) {
-        tampilPesan("Ayah dan ibu tidak boleh orang yang sama.");
-        return;
-    }
-
-    const tombol = document.getElementById("simpanBtn");
-    tombol.disabled = true;
-    tombol.textContent = "Menyimpan...";
-
-    try {
-
-        if (anggotaId.value) {
-
-            await updateDoc(
-                doc(db, "anggota", anggotaId.value),
-                data
-            );
-
-            tampilPesan("Data anggota berhasil diperbarui.");
-
-        } else {
-
-            await addDoc(collection(db, "anggota"), data);
-
-            tampilPesan("Anggota keluarga berhasil ditambahkan.");
-        }
-
-        resetForm();
-        await muatAnggota();
-
-    } catch (error) {
-
-        console.error(error);
-        tampilPesan("Gagal menyimpan data: " + error.message);
-
-    } finally {
-
-        tombol.disabled = false;
-        tombol.textContent = anggotaId.value
-            ? "Perbarui Data"
-            : "Simpan Data";
-    }
+if(o.jenisKelamin==="Laki-laki")ayah.appendChild(option);
+if(o.jenisKelamin==="Perempuan")ibu.appendChild(option.cloneNode(true));
 });
 
-/* HAPUS ANGGOTA */
-async function hapusAnggota(id) {
-
-    const orang = dataAnggota.find(a => a.id === id);
-    if (!orang) return;
-
-    const memilikiAnak = dataAnggota.some(a =>
-        a.ayahId === id || a.ibuId === id
-    );
-
-    if (memilikiAnak) {
-        alert("Anggota ini masih tercatat sebagai ayah atau ibu. Ubah data anaknya terlebih dahulu.");
-        return;
-    }
-
-    const yakin = confirm(
-        "Hapus data anggota " + orang.nama + "?"
-    );
-
-    if (!yakin) return;
-
-    try {
-
-        await deleteDoc(doc(db, "anggota", id));
-
-        tampilPesan("Data anggota berhasil dihapus.");
-        await muatAnggota();
-
-    } catch (error) {
-
-        console.error(error);
-        tampilPesan("Gagal menghapus data: " + error.message);
-    }
+ayah.value=nilaiAyah;
+ibu.value=nilaiIbu;
 }
 
-/* RESET FORM */
-function resetForm() {
+function tampilkanDaftar(){
+const kata=el("cariAnggota").value.toLowerCase().trim();
+daftar.innerHTML="";
 
-    form.reset();
-    anggotaId.value = "";
+const hasil=dataAnggota
+.filter(o=>(o.nama||"").toLowerCase().includes(kata))
+.sort((a,b)=>(a.nama||"").localeCompare(b.nama||"","id"));
 
-    document.getElementById("judulForm").textContent =
-        "Tambah Anggota Keluarga";
-
-    document.getElementById("simpanBtn").textContent =
-        "Simpan Data";
-
-    isiPilihanOrangTua();
+if(hasil.length===0){
+daftar.textContent="Anggota tidak ditemukan.";
+return;
 }
 
-document.getElementById("batalBtn").addEventListener("click", () => {
-    resetForm();
-    sembunyikanPesan();
+hasil.forEach(o=>{
+const item=document.createElement("div");
+item.className="anggota-item";
+
+const foto=document.createElement("img");
+foto.className="foto";
+foto.alt="Foto "+(o.nama||"anggota");
+foto.src=o.fotoUrl||"";
+foto.onerror=()=>{foto.src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e7f2e9'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='48'%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E";};
+
+const info=document.createElement("div");
+info.className="info-anggota";
+
+const namaEl=document.createElement("strong");
+namaEl.textContent=o.nama||"Tanpa nama";
+
+const detail=document.createElement("p");
+detail.textContent=o.jenisKelamin||"-";
+
+const aksi=document.createElement("div");
+aksi.className="aksi";
+
+const edit=document.createElement("button");
+edit.className="btn-edit";
+edit.textContent="Edit";
+edit.onclick=()=>editAnggota(o.id);
+
+const hapus=document.createElement("button");
+hapus.className="btn-hapus";
+hapus.textContent="Hapus";
+hapus.onclick=()=>hapusAnggota(o.id);
+
+aksi.append(edit,hapus);
+info.append(namaEl,detail,aksi);
+item.append(foto,info);
+daftar.appendChild(item);
+}
+
+);
+}
+
+function editAnggota(id){
+const o=dataAnggota.find(a=>a.id===id);
+if(!o)return;
+
+el("anggotaId").value=o.id;
+el("nama").value=o.nama||"";
+el("jenisKelamin").value=o.jenisKelamin||"";
+el("fotoUrl").value=o.fotoUrl||"";
+
+isiPilihanOrangTua();
+el("ayahId").value=o.ayahId||"";
+el("ibuId").value=o.ibuId||"";
+
+el("judulForm").textContent="Edit Anggota Keluarga";
+el("simpanBtn").textContent="Perbarui Data";
+
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+form.addEventListener("submit",async e=>{
+e.preventDefault();
+sembunyikanPesan();
+
+const data={
+nama:el("nama").value.trim(),
+jenisKelamin:el("jenisKelamin").value,
+fotoUrl:el("fotoUrl").value.trim(),
+ayahId:el("ayahId").value,
+ibuId:el("ibuId").value
+};
+
+if(data.ayahId&&data.ayahId===data.ibuId){
+tampilPesan("Ayah dan ibu tidak boleh orang yang sama.");
+return;
+}
+
+const tombol=el("simpanBtn");
+tombol.disabled=true;
+tombol.textContent="Menyimpan...";
+
+try{
+if(el("anggotaId").value){
+await updateDoc(doc(db,"anggota",el("anggotaId").value),{
+...data,
+tanggalLahir:deleteField()
+});
+tampilPesan("Data anggota berhasil diperbarui.");
+}else{
+await addDoc(collection(db,"anggota"),data);
+tampilPesan("Anggota keluarga berhasil ditambahkan.");
+}
+
+resetForm();
+await muatAnggota();
+
+}catch(error){
+tampilPesan("Gagal menyimpan: "+error.message);
+}finally{
+tombol.disabled=false;
+}
 });
 
-/* KELUAR */
-document.getElementById("logoutBtn").addEventListener("click", async () => {
+async function hapusAnggota(id){
+const o=dataAnggota.find(a=>a.id===id);
+if(!o)return;
 
-    if (!confirm("Apakah Anda yakin ingin keluar?")) return;
+const memilikiAnak=dataAnggota.some(a=>a.ayahId===id||a.ibuId===id);
 
-    try {
-        await signOut(auth);
-        window.location.replace("login.html");
-    } catch (error) {
-        alert("Gagal keluar: " + error.message);
-    }
+if(memilikiAnak){
+alert("Anggota ini masih tercatat sebagai ayah atau ibu. Ubah data anaknya terlebih dahulu.");
+return;
+}
+
+if(!confirm("Hapus data anggota "+o.nama+"?"))return;
+
+try{
+await deleteDoc(doc(db,"anggota",id));
+tampilPesan("Data berhasil dihapus.");
+await muatAnggota();
+}catch(error){
+tampilPesan("Gagal menghapus: "+error.message);
+}
+}
+
+function resetForm(){
+form.reset();
+el("anggotaId").value="";
+el("judulForm").textContent="👨‍👩‍👧‍👦 Tambah Anggota Keluarga";
+el("simpanBtn").textContent="Simpan Data";
+isiPilihanOrangTua();
+}
+
+el("batalBtn").addEventListener("click",()=>{
+resetForm();
+sembunyikanPesan();
+});
+
+el("cariAnggota").addEventListener("input",tampilkanDaftar);
+
+el("logoutBtn").addEventListener("click",async()=>{
+if(!confirm("Apakah Anda yakin ingin keluar?"))return;
+try{
+await signOut(auth);
+window.location.replace("login.html");
+}catch(error){
+alert("Gagal keluar: "+error.message);
+}
 });
 </script></body>
-    </html>
+</html>
