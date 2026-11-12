@@ -1,460 +1,756 @@
 <!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Admin - Keluarga Besar Iman Sukiyadi</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f0f7f1;color:#26352d}
-header{background:linear-gradient(135deg,#064d2d,#16834c);color:white;padding:20px 15px;border-bottom:5px solid #a5df62}
-.header-inner{max-width:950px;margin:auto;display:flex;align-items:center;gap:12px}
-.logo{width:48px;height:48px;border-radius:50%;background:white;color:#145c3b;display:flex;align-items:center;justify-content:center;font-size:27px}
-.identitas{flex:1}
-.identitas h1{font-size:17px;margin-bottom:5px}
-.identitas p{font-size:11px}
-.keluar{background:white;color:#145c3b;border:0;padding:10px 13px;border-radius:8px;font-weight:bold}
-.container{width:92%;max-width:950px;margin:22px auto}
-.banner{padding:25px 20px;border-radius:14px;color:white;background:linear-gradient(90deg,rgba(5,65,35,.9),rgba(12,110,58,.65)),url("https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200");background-size:cover;background-position:center;margin-bottom:25px}
-.banner h2{font-size:22px;margin-bottom:10px}
-.banner p{font-size:14px;line-height:1.6}
-.judul{color:#145c3b;font-size:19px;margin-bottom:14px}
-.statistik{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:25px}
-.stat-card,.form-card,.daftar-card{background:white;padding:18px;border-radius:12px;box-shadow:0 2px 9px #00000012;margin-bottom:22px}
-.angka{font-size:28px;font-weight:bold;color:#16834c;margin-bottom:6px}
-.stat-card p{font-size:13px;color:#68756d}
-label{display:block;font-size:14px;font-weight:bold;color:#315b43;margin:13px 0 7px}
-input,select{width:100%;padding:12px;border:1px solid #cbded0;border-radius:8px;font-size:14px;background:#fbfefb}
-input[type=file]{padding:9px}
-.preview{width:100px;height:100px;object-fit:cover;border-radius:50%;display:none;margin-top:12px;border:3px solid #dceee1}
-.tombol{display:flex;gap:10px;margin-top:20px}
-.tombol button{flex:1;padding:13px;border:0;border-radius:8px;font-weight:bold}
-#simpanBtn{background:#16834c;color:white}
-#batalBtn{background:#e7eee9;color:#315b43}
-.pesan{padding:12px;margin-bottom:15px;border-radius:8px;background:#eaf5ee;color:#145c3b;font-size:13px;display:none;overflow-wrap:anywhere}
-.cari{margin-bottom:15px}
-.anggota-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #e5eee7}
-.foto{width:58px;height:58px;border-radius:50%;object-fit:cover;background:#e7f2e9;flex-shrink:0}
-.info-anggota{flex:1;min-width:0}
-.info-anggota strong{color:#145c3b;display:block;margin-bottom:5px;overflow-wrap:anywhere}
-.info-anggota p{font-size:12px;color:#68756d}
-.aksi{display:flex;gap:6px;margin-top:8px}
-.aksi button{border:0;border-radius:6px;padding:7px 10px;font-weight:bold}
-.btn-edit{background:#e6f2e9;color:#145c3b}
-.btn-hapus{background:#ffe9e9;color:#bd2929}
-footer{background:linear-gradient(135deg,#064d2d,#126b3c);color:white;text-align:center;padding:25px 12px;margin-top:40px;border-top:5px solid #a5df62;font-size:12px;line-height:1.9}
-#loading{text-align:center;padding:60px 15px;color:#145c3b;font-weight:bold}
-#dashboard{display:none}
-@media(max-width:480px){
-.identitas h1{font-size:13px}
-.identitas p{font-size:9px}
-.logo{width:42px;height:42px;font-size:23px}
-.keluar{padding:9px;font-size:12px}
-.banner h2{font-size:19px}
-.form-card,.daftar-card{padding:14px}
-.foto{width:48px;height:48px}
-.aksi button{padding:7px 8px;font-size:11px}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin - Keluarga Besar Iman Sukiyadi</title><style>
+* {
+  box-sizing: border-box;
 }
-</style></head><body><div id="loading">🌳 Memeriksa akses admin...</div><div id="dashboard"><header>
-<div class="header-inner">
-<div class="logo">🌳</div>
-<div class="identitas">
-<h1>DASHBOARD ADMIN</h1>
-<p>KELUARGA BESAR IMAN SUKIYADI</p>
-</div>
-<button class="keluar" id="logoutBtn">Keluar</button>
-</div>
-</header><main class="container"><section class="banner">
-<h2>Selamat Datang, Admin</h2>
-<p>Halaman pengelolaan Keluarga Besar Iman Sukiyadi.<br>Mengenal keluarga, menjaga silaturahmi.</p>
-</section><h2 class="judul">📊 Ringkasan Data</h2><section class="statistik">
-<div class="stat-card">
-<div class="angka" id="jumlahAnggota">-</div>
-<p>Jumlah Anggota Keluarga</p>
-</div>
-<div class="stat-card">
-<div class="angka">Aktif</div>
-<p>Status Dashboard Admin</p>
-</div>
-</section><h2 class="judul" id="judulForm">👨‍👩‍👧‍👦 Tambah Anggota Keluarga</h2><section class="form-card">
-<div class="pesan" id="pesan"></div><form id="anggotaForm">
-<input type="hidden" id="anggotaId"><label for="nama">Nama Lengkap</label>
-<input type="text" id="nama" required placeholder="Masukkan nama anggota">
 
-<label for="jenisKelamin">Jenis Kelamin</label>
-<select id="jenisKelamin" required>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
 
-<option value="">Pilih jenis kelamin</option>
-<option value="Laki-laki">Laki-laki</option>
-<option value="Perempuan">Perempuan</option>
-</select><label for="foto">Foto Profil</label>
-<input type="file" id="foto" accept="image/*">
-<img id="preview" class="preview" alt="Pratinjau foto">
-<small style="display:block;margin-top:7px;color:#68756d">
-Pilih foto dari galeri HP. Foto akan dikompres otomatis.
-</small>
+header {
+  background: #14532d;
+  color: white;
+  padding: 20px 15px;
+  text-align: center;
+}
 
-<label for="ayahId">Nama Ayah</label>
-<select id="ayahId"><option value="">Pilih ayah</option></select>
+header h2 {
+  margin: 0;
+}
 
-<label for="ibuId">Nama Ibu</label>
-<select id="ibuId"><option value="">Pilih ibu</option></select>
+header p {
+  margin: 7px 0 0;
+}
 
-<div class="tombol">
-<button type="submit" id="simpanBtn">Simpan Data</button>
-<button type="button" id="batalBtn">Batal</button>
-</div>
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+h3 {
+  color: #14532d;
+  margin-top: 0;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+button {
+  border: 0;
+  padding: 11px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 3px;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.simpan {
+  background: #15803d;
+  color: white;
+}
+
+.batal {
+  background: #64748b;
+  color: white;
+}
+
+.edit {
+  background: #2563eb;
+  color: white;
+}
+
+.hapus {
+  background: #dc2626;
+  color: white;
+}
+
+.kembali {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.anggota {
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  border-radius: 9px;
+  margin: 10px 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.anggota img {
+  width: 65px;
+  height: 65px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #e2e8f0;
+}
+
+.info {
+  flex: 1;
+  min-width: 120px;
+}
+
+.info strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.kecil {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+#pesan {
+  margin: 12px 0;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+#preview {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  display: none;
+  border-radius: 8px;
+  margin: 8px 0;
+  background: #e2e8f0;
+}
+
+.petunjuk {
+  color: #64748b;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 12px;
+}
+
+@media(max-width:500px) {
+  .anggota {
+    align-items: flex-start;
+  }
+
+  .anggota img {
+    width: 55px;
+    height: 55px;
+  }
+}
+</style></head><body><header>
+  <h2>KELOLA ANGGOTA</h2>
+  <p>Keluarga Besar Iman Sukiyadi</p>
+</header><div class="container">  <div class="card"><button class="kembali" onclick="location.href='index.html'">
+  ← Kembali ke Beranda
+</button>
+
+<h3 id="judulForm">Tambah Anggota Keluarga</h3>
+
+<form id="formAnggota">
+
+  <label>Nama Lengkap</label>
+  <input id="nama" type="text" required>
+
+  <label>Jenis Kelamin</label>
+  <select id="jenisKelamin" required>
+    <option value="">Pilih jenis kelamin</option>
+    <option value="Laki-laki">Laki-laki</option>
+    <option value="Perempuan">Perempuan</option>
+  </select>
+
+  <label>Nama Ayah</label>
+  <select id="ayahId">
+    <option value="">Tidak diketahui / Kosong</option>
+  </select>
+
+  <label>Nama Ibu</label>
+  <select id="ibuId">
+    <option value="">Tidak diketahui / Kosong</option>
+  </select>
+
+  <label>Foto Anggota</label>
+  <input id="foto" type="file" accept="image/*">
+
+  <div class="petunjuk">
+    Pilih foto dari galeri HP. Foto akan dikompres otomatis.
+  </div>
+
+  <img id="preview" alt="Pratinjau foto">
+
+  <br>
+
+  <button class="simpan" type="submit" id="tombolSimpan">
+    Simpan Anggota
+  </button>
+
+  <button class="batal" type="button" id="tombolBatal"
+          style="display:none">
+    Batal Edit
+  </button>
+
 </form>
-</section><h2 class="judul">📋 Daftar Anggota Keluarga</h2><section class="daftar-card">
-<input type="search" id="cariAnggota" class="cari" placeholder="🔍 Cari nama anggota keluarga...">
-<div id="daftarAnggota">Memuat data anggota...</div>
-</section></main><footer>
-<strong>KELUARGA BESAR IMAN SUKIYADI</strong><br>
-Mengenal keluarga, menjaga silaturahmi<br>
-Halaman Pengelolaan Admin<br>
-&copy; 2026 Iman Sukiyadi
-</footer></div><script type="module">
-import {auth,db} from "./js/firebase.js";
+
+<div id="pesan"></div>
+
+  </div>  <div class="card"><h3>Daftar Anggota Keluarga</h3>
+
+<input id="pencarian" type="search"
+       placeholder="Cari nama anggota...">
+
+<div id="daftar">Memuat data anggota...</div>
+
+  </div></div><script type="module">
+
+import { auth, db } from "./js/firebase.js";
 
 import {
-onAuthStateChanged,signOut
-} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
-
-import {
-doc,getDoc,collection,getDocs,addDoc,updateDoc,deleteDoc
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  deleteField
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
-const el=id=>document.getElementById(id);
-const form=el("anggotaForm");
-const daftar=el("daftarAnggota");
-const pesan=el("pesan");
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-let dataAnggota=[];
-let fotoBaru=null;
-let fotoLama="";
+const koleksi = collection(db, "anggota");
 
-function tampilPesan(teks){
-pesan.textContent=teks;
-pesan.style.display="block";
+const ADMIN_UID = "9h5mI5smFLXFYs6pK7wlTrsUJV83";
+
+let dataAnggota = [];
+let idEdit = null;
+let fotoLama = "";
+let urlPreview = "";
+
+const $ = id => document.getElementById(id);
+
+function pesan(teks, warna = "green") {
+  $("pesan").textContent = teks;
+  $("pesan").style.color = warna;
 }
 
-function sembunyikanPesan(){
-pesan.style.display="none";
-}
+// Memeriksa akun admin
+onAuthStateChanged(auth, async user => {
 
-/* PEMERIKSAAN ADMIN SEPERTI BANI YASROJI */
-let sedangMemeriksa=false;
+  if (!user) {
+    location.href = "login.html";
+    return;
+  }
 
-onAuthStateChanged(auth,async user=>{
+  if (user.uid !== ADMIN_UID) {
+    alert("Akun ini tidak memiliki akses admin.");
+    await signOut(auth);
+    location.href = "login.html";
+    return;
+  }
 
-if(sedangMemeriksa)return;
-sedangMemeriksa=true;
+  await muatAnggota();
 
-if(!user){
-window.location.replace("login.html");
-return;
-}
-
-try{
-const adminRef=doc(db,"admins",user.uid);
-const adminSnap=await getDoc(adminRef);
-
-if(!adminSnap.exists()||adminSnap.data().role!=="admin"){
-await signOut(auth);
-window.location.replace("login.html");
-return;
-}
-
-el("loading").style.display="none";
-el("dashboard").style.display="block";
-
-await muatAnggota();
-
-}catch(error){
-console.error(error);
-el("loading").textContent="Tidak dapat memeriksa akses admin: "+error.message;
-sedangMemeriksa=false;
-}
 });
 
-/* MEMUAT DATA */
-async function muatAnggota(){
-const snapshot=await getDocs(collection(db,"anggota"));
+// Memuat data anggota
+async function muatAnggota() {
 
-dataAnggota=snapshot.docs.map(d=>({
-id:d.id,...d.data()
-}));
+  $("daftar").textContent = "Memuat data anggota...";
 
-el("jumlahAnggota").textContent=dataAnggota.length;
+  try {
 
-isiPilihanOrangTua();
-tampilkanDaftar();
+    const snapshot = await getDocs(koleksi);
+
+    dataAnggota = snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+
+    isiPilihanOrang();
+    tampilkanAnggota();
+
+  } catch (error) {
+
+    $("daftar").textContent =
+      "Gagal memuat data: " + error.message;
+
+  }
+
 }
 
-/* PILIHAN AYAH DAN IBU */
-function isiPilihanOrangTua(){
-const ayah=el("ayahId");
-const ibu=el("ibuId");
+// Mengisi pilihan ayah dan ibu
+function isiPilihanOrang() {
 
-ayah.innerHTML='<option value="">Pilih ayah</option>';
-ibu.innerHTML='<option value="">Pilih ibu</option>';
+  ["ayahId", "ibuId"].forEach(id => {
 
-dataAnggota.forEach(o=>{
-if(o.id===el("anggotaId").value)return;
+    const select = $(id);
+    const nilaiLama = select.value;
 
-const option=document.createElement("option");
-option.value=o.id;
-option.textContent=o.nama||"Tanpa nama";
+    select.innerHTML = "";
 
-if(o.jenisKelamin==="Laki-laki")ayah.appendChild(option);
-if(o.jenisKelamin==="Perempuan")ibu.appendChild(option.cloneNode(true));
-});
+    const kosong = document.createElement("option");
+    kosong.value = "";
+    kosong.textContent = "Tidak diketahui / Kosong";
+
+    select.appendChild(kosong);
+
+    dataAnggota
+      .slice()
+      .sort((a,b) =>
+        (a.nama || "").localeCompare(b.nama || "")
+      )
+      .forEach(a => {
+
+        const option = document.createElement("option");
+
+        option.value = a.id;
+        option.textContent = a.nama || "(Tanpa nama)";
+
+        // Jangan memilih dirinya sendiri sebagai orang tua
+        if (a.id === idEdit) {
+          option.disabled = true;
+        }
+
+        select.appendChild(option);
+
+      });
+
+    select.value = nilaiLama;
+
+  });
+
 }
 
-/* DAFTAR ANGGOTA */
-function tampilkanDaftar(){
-const kata=el("cariAnggota").value.toLowerCase().trim();
-daftar.innerHTML="";
+// Menampilkan daftar anggota
+function tampilkanAnggota() {
 
-const hasil=dataAnggota
-.filter(o=>(o.nama||"").toLowerCase().includes(kata))
-.sort((a,b)=>(a.nama||"").localeCompare(b.nama||"","id"));
+  const kata = $("pencarian").value
+    .trim()
+    .toLowerCase();
 
-if(!hasil.length){
-daftar.textContent="Anggota tidak ditemukan.";
-return;
+  const hasil = dataAnggota.filter(a =>
+    (a.nama || "").toLowerCase().includes(kata)
+  );
+
+  $("daftar").innerHTML = "";
+
+  if (hasil.length === 0) {
+    $("daftar").textContent = "Anggota tidak ditemukan.";
+    return;
+  }
+
+  hasil.sort((a,b) =>
+    (a.nama || "").localeCompare(b.nama || "")
+  );
+
+  hasil.forEach(a => {
+
+    const item = document.createElement("div");
+    item.className = "anggota";
+
+    const gambar = document.createElement("img");
+
+    gambar.alt = "Foto anggota";
+
+    if (a.fotoUrl) {
+      gambar.src = a.fotoUrl;
+    } else {
+      gambar.style.display = "none";
+    }
+
+    gambar.onerror = () => {
+      gambar.style.display = "none";
+    };
+
+    const info = document.createElement("div");
+    info.className = "info";
+
+    const nama = document.createElement("strong");
+    nama.textContent = a.nama || "(Tanpa nama)";
+
+    const detail = document.createElement("div");
+    detail.className = "kecil";
+
+    detail.textContent =
+      a.jenisKelamin || "-";
+
+    info.append(nama, detail);
+
+    const tombolEdit = document.createElement("button");
+
+    tombolEdit.className = "edit";
+    tombolEdit.textContent = "Edit";
+    tombolEdit.onclick = () => mulaiEdit(a.id);
+
+    const tombolHapus = document.createElement("button");
+
+    tombolHapus.className = "hapus";
+    tombolHapus.textContent = "Hapus";
+    tombolHapus.onclick = () =>
+      hapusAnggota(a.id, a.nama);
+
+    item.append(
+      gambar,
+      info,
+      tombolEdit,
+      tombolHapus
+    );
+
+    $("daftar").appendChild(item);
+
+  });
+
 }
 
-hasil.forEach(o=>{
-const item=document.createElement("div");
-item.className="anggota-item";
-
-const foto=document.createElement("img");
-foto.className="foto";
-foto.alt="Foto anggota";
-foto.src=o.fotoUrl||fotoKosong();
-
-const info=document.createElement("div");
-info.className="info-anggota";
-
-const nama=document.createElement("strong");
-nama.textContent=o.nama||"Tanpa nama";
-
-const detail=document.createElement("p");
-detail.textContent=o.jenisKelamin||"-";
-
-const aksi=document.createElement("div");
-aksi.className="aksi";
-
-const edit=document.createElement("button");
-edit.className="btn-edit";
-edit.textContent="Edit";
-edit.onclick=()=>editAnggota(o.id);
-
-const hapus=document.createElement("button");
-hapus.className="btn-hapus";
-hapus.textContent="Hapus";
-hapus.onclick=()=>hapusAnggota(o.id);
-
-aksi.append(edit,hapus);
-info.append(nama,detail,aksi);
-item.append(foto,info);
-daftar.appendChild(item);
-});
-}
-
-function fotoKosong(){
-return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(
-'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#e7f2e9"/><text x="50" y="65" text-anchor="middle" font-size="48">👤</text></svg>'
+$("pencarian").addEventListener(
+  "input",
+  tampilkanAnggota
 );
+
+// Menghapus URL pratinjau sementara
+function hapusUrlPreview() {
+
+  if (urlPreview) {
+    URL.revokeObjectURL(urlPreview);
+    urlPreview = "";
+  }
+
 }
 
-/* KOMPRES FOTO DARI GALERI */
-function kompresFoto(file){
-return new Promise((resolve,reject)=>{
-const reader=new FileReader();
+// Pratinjau foto dari galeri
+$("foto").addEventListener("change", () => {
 
-reader.onload=()=>{
-const img=new Image();
+  const file = $("foto").files[0];
 
-img.onload=()=>{
-const ukuran=500;
-const skala=Math.min(1,ukuran/Math.max(img.width,img.height));
+  hapusUrlPreview();
 
-const canvas=document.createElement("canvas");
-canvas.width=Math.round(img.width*skala);
-canvas.height=Math.round(img.height*skala);
+  if (!file) return;
 
-const ctx=canvas.getContext("2d");
-ctx.drawImage(img,0,0,canvas.width,canvas.height);
+  if (!file.type.startsWith("image/")) {
+    pesan("File harus berupa gambar.", "red");
+    $("foto").value = "";
+    return;
+  }
 
-resolve(canvas.toDataURL("image/jpeg",0.65));
-};
+  urlPreview = URL.createObjectURL(file);
 
-img.onerror=()=>reject(new Error("Foto tidak dapat dibaca."));
-img.src=reader.result;
-};
+  $("preview").src = urlPreview;
+  $("preview").style.display = "block";
 
-reader.onerror=()=>reject(new Error("Gagal membaca foto."));
-reader.readAsDataURL(file);
-});
-}
-
-el("foto").addEventListener("change",async()=>{
-const file=el("foto").files[0];
-if(!file)return;
-
-if(!file.type.startsWith("image/")){
-tampilPesan("Pilih file gambar.");
-return;
-}
-
-if(file.size>10*1024*1024){
-el("foto").value="";
-tampilPesan("Ukuran foto maksimal 10 MB sebelum dikompres.");
-return;
-}
-
-try{
-fotoBaru=await kompresFoto(file);
-el("preview").src=fotoBaru;
-el("preview").style.display="block";
-sembunyikanPesan();
-}catch(error){
-tampilPesan(error.message);
-}
 });
 
-/* EDIT ANGGOTA */
-function editAnggota(id){
-const o=dataAnggota.find(a=>a.id===id);
-if(!o)return;
+// Kompres foto menjadi Base64
+async function prosesFoto(file) {
 
-el("anggotaId").value=o.id;
-el("nama").value=o.nama||"";
-el("jenisKelamin").value=o.jenisKelamin||"";
-el("ayahId").value=o.ayahId||"";
-el("ibuId").value=o.ibuId||"";
+  if (!file) return null;
 
-isiPilihanOrangTua();
-el("ayahId").value=o.ayahId||"";
-el("ibuId").value=o.ibuId||"";
+  if (!file.type.startsWith("image/")) {
+    throw new Error("File harus berupa gambar.");
+  }
 
-fotoLama=o.fotoUrl||"";
-fotoBaru=null;
-el("foto").value="";
+  const gambar = new Image();
+  const url = URL.createObjectURL(file);
 
-if(fotoLama){
-el("preview").src=fotoLama;
-el("preview").style.display="block";
-}else{
-el("preview").style.display="none";
+  try {
+
+    await new Promise((resolve, reject) => {
+
+      gambar.onload = resolve;
+      gambar.onerror = reject;
+      gambar.src = url;
+
+    });
+
+    const batas = 600;
+
+    const skala = Math.min(
+      1,
+      batas / Math.max(gambar.width, gambar.height)
+    );
+
+    const canvas = document.createElement("canvas");
+
+    canvas.width = Math.max(
+      1,
+      Math.round(gambar.width * skala)
+    );
+
+    canvas.height = Math.max(
+      1,
+      Math.round(gambar.height * skala)
+    );
+
+    const ctx = canvas.getContext("2d");
+
+    ctx.drawImage(
+      gambar,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    const hasil = canvas.toDataURL(
+      "image/jpeg",
+      0.65
+    );
+
+    // Perkiraan ukuran Base64 dalam byte
+    const ukuran = Math.ceil(
+      (hasil.length - "data:image/jpeg;base64,".length) * 3 / 4
+    );
+
+    if (ukuran > 700000) {
+      throw new Error(
+        "Ukuran foto masih terlalu besar. Gunakan foto lain."
+      );
+    }
+
+    return hasil;
+
+  } finally {
+
+    URL.revokeObjectURL(url);
+
+  }
+
 }
 
-el("judulForm").textContent="Edit Anggota Keluarga";
-el("simpanBtn").textContent="Perbarui Data";
+// Menyimpan anggota
+$("formAnggota").addEventListener(
+  "submit",
+  async event => {
 
-window.scrollTo({top:0,behavior:"smooth"});
+    event.preventDefault();
+
+    const tombol = $("tombolSimpan");
+
+    tombol.disabled = true;
+
+    pesan("Sedang menyimpan data...");
+
+    try {
+
+      const file = $("foto").files[0];
+
+      let fotoUrl = fotoLama;
+
+      if (file) {
+        fotoUrl = await prosesFoto(file);
+      }
+
+      const data = {
+
+        nama: $("nama").value.trim(),
+
+        jenisKelamin:
+          $("jenisKelamin").value,
+
+        ayahId:
+          $("ayahId").value,
+
+        ibuId:
+          $("ibuId").value,
+
+        fotoUrl:
+          fotoUrl || ""
+
+      };
+
+      if (!data.nama) {
+        throw new Error("Nama anggota wajib diisi.");
+      }
+
+      if (idEdit) {
+
+        await updateDoc(
+          doc(db, "anggota", idEdit),
+          {
+            ...data,
+            tanggalLahir: deleteField(),
+            diperbarui: new Date()
+          }
+        );
+
+        pesan("Data anggota berhasil diperbarui.");
+
+      } else {
+
+        await addDoc(koleksi, {
+          ...data,
+          dibuat: new Date()
+        });
+
+        pesan("Anggota baru berhasil ditambahkan.");
+
+      }
+
+      resetForm();
+
+      await muatAnggota();
+
+    } catch (error) {
+
+      pesan(
+        "Gagal menyimpan: " + error.message,
+        "red"
+      );
+
+    } finally {
+
+      tombol.disabled = false;
+
+    }
+
+  }
+);
+
+// Mengedit anggota
+function mulaiEdit(id) {
+
+  const a = dataAnggota.find(
+    item => item.id === id
+  );
+
+  if (!a) return;
+
+  idEdit = id;
+
+  fotoLama = a.fotoUrl || "";
+
+  $("nama").value = a.nama || "";
+
+  $("jenisKelamin").value =
+    a.jenisKelamin || "";
+
+  isiPilihanOrang();
+
+  $("ayahId").value = a.ayahId || "";
+  $("ibuId").value = a.ibuId || "";
+
+  if (fotoLama) {
+
+    $("preview").src = fotoLama;
+    $("preview").style.display = "block";
+
+  } else {
+
+    $("preview").src = "";
+    $("preview").style.display = "none";
+
+  }
+
+  $("judulForm").textContent =
+    "Edit Anggota Keluarga";
+
+  $("tombolSimpan").textContent =
+    "Simpan Perubahan";
+
+  $("tombolBatal").style.display =
+    "inline-block";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
 }
 
-/* SIMPAN DATA */
-form.addEventListener("submit",async e=>{
-e.preventDefault();
-sembunyikanPesan();
+// Menghapus anggota
+async function hapusAnggota(id, nama) {
 
-const data={
-nama:el("nama").value.trim(),
-jenisKelamin:el("jenisKelamin").value,
-ayahId:el("ayahId").value,
-ibuId:el("ibuId").value
-};
+  const yakin = confirm(
+    "Apakah yakin ingin menghapus data " + nama + "?"
+  );
 
-if(data.ayahId&&data.ayahId===data.ibuId){
-tampilPesan("Ayah dan ibu tidak boleh orang yang sama.");
-return;
+  if (!yakin) return;
+
+  try {
+
+    await deleteDoc(doc(db, "anggota", id));
+
+    pesan("Data anggota berhasil dihapus.");
+
+    if (idEdit === id) {
+      resetForm();
+    }
+
+    await muatAnggota();
+
+  } catch (error) {
+
+    pesan(
+      "Gagal menghapus: " + error.message,
+      "red"
+    );
+
+  }
+
 }
 
-if(fotoBaru){
-data.fotoUrl=fotoBaru;
-}else if(!el("anggotaId").value){
-data.fotoUrl="";
+// Mengosongkan form
+function resetForm() {
+
+  $("formAnggota").reset();
+
+  idEdit = null;
+  fotoLama = "";
+
+  hapusUrlPreview();
+
+  $("preview").src = "";
+  $("preview").style.display = "none";
+
+  $("judulForm").textContent =
+    "Tambah Anggota Keluarga";
+
+  $("tombolSimpan").textContent =
+    "Simpan Anggota";
+
+  $("tombolBatal").style.display =
+    "none";
+
+  isiPilihanOrang();
+
 }
 
-const tombol=el("simpanBtn");
-tombol.disabled=true;
-tombol.textContent="Menyimpan...";
+$("tombolBatal").addEventListener(
+  "click",
+  resetForm
+);
 
-try{
-if(el("anggotaId").value){
-await updateDoc(doc(db,"anggota",el("anggotaId").value),data);
-tampilPesan("Data anggota berhasil diperbarui.");
-}else{
-await addDoc(collection(db,"anggota"),data);
-tampilPesan("Anggota keluarga berhasil ditambahkan.");
-}
-
-resetForm();
-await muatAnggota();
-
-}catch(error){
-console.error(error);
-tampilPesan("Gagal menyimpan: "+error.message);
-}finally{
-tombol.disabled=false;
-}
-});
-
-/* HAPUS ANGGOTA */
-async function hapusAnggota(id){
-const o=dataAnggota.find(a=>a.id===id);
-if(!o)return;
-
-const memilikiAnak=dataAnggota.some(a=>a.ayahId===id||a.ibuId===id);
-
-if(memilikiAnak){
-alert("Anggota ini masih tercatat sebagai ayah atau ibu. Ubah data anaknya terlebih dahulu.");
-return;
-}
-
-if(!confirm("Hapus data anggota "+o.nama+"?"))return;
-
-try{
-await deleteDoc(doc(db,"anggota",id));
-tampilPesan("Data berhasil dihapus.");
-await muatAnggota();
-}catch(error){
-tampilPesan("Gagal menghapus: "+error.message);
-}
-}
-
-/* RESET FORM */
-function resetForm(){
-form.reset();
-el("anggotaId").value="";
-fotoBaru=null;
-fotoLama="";
-el("preview").src="";
-el("preview").style.display="none";
-el("judulForm").textContent="👨‍👩‍👧‍👦 Tambah Anggota Keluarga";
-el("simpanBtn").textContent="Simpan Data";
-isiPilihanOrangTua();
-}
-
-el("batalBtn").addEventListener("click",()=>{
-resetForm();
-sembunyikanPesan();
-});
-
-el("cariAnggota").addEventListener("input",tampilkanDaftar);
-
-/* KELUAR */
-el("logoutBtn").addEventListener("click",async()=>{
-if(!confirm("Apakah Anda yakin ingin keluar?"))return;
-
-try{
-await signOut(auth);
-window.location.replace("login.html");
-}catch(error){
-alert("Gagal keluar: "+error.message);
-}
-});
 </script></body>
 </html>
