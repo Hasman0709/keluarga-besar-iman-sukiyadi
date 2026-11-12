@@ -15,7 +15,6 @@ body {
     color: #26352d;
 }
 
-/* HEADER */
 header {
     background: linear-gradient(135deg, #064d2d, #16834c);
     color: white;
@@ -28,15 +27,15 @@ header {
     margin: auto;
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 12px;
 }
 
 .logo {
-    width: 58px;
-    height: 58px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: white;
-    color: #14643a;
+    color: #145c3b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,43 +48,45 @@ header {
 }
 
 .identitas h1 {
-    font-size: 19px;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 
 .identitas p {
-    font-size: 12px;
-    color: #e4f5e9;
+    font-size: 11px;
 }
 
 .keluar {
     background: white;
     color: #145c3b;
     border: none;
-    padding: 11px 14px;
+    padding: 11px 13px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
 }
 
-/* BANNER */
-.banner {
+.container {
+    width: 92%;
     max-width: 950px;
     margin: 22px auto;
-    width: 92%;
+}
+
+.banner {
     padding: 25px 20px;
-    border-radius: 15px;
+    border-radius: 14px;
+    color: white;
     background:
-        linear-gradient(90deg, rgba(5,65,35,.85), rgba(12,110,58,.65)),
+        linear-gradient(90deg, rgba(5,65,35,.88), rgba(12,110,58,.65)),
         url("https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200");
     background-size: cover;
     background-position: center;
-    color: white;
+    margin-bottom: 25px;
 }
 
 .banner h2 {
-    font-size: 23px;
-    margin-bottom: 9px;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
 .banner p {
@@ -93,25 +94,44 @@ header {
     line-height: 1.6;
 }
 
-/* CONTAINER */
-.container {
-    width: 92%;
-    max-width: 950px;
-    margin: 25px auto;
-}
-
 .judul {
     color: #145c3b;
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 19px;
+    margin-bottom: 14px;
 }
 
-/* FORM */
-.form-card {
+.statistik {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 27px;
+}
+
+.stat-card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 9px #00000012;
+}
+
+.angka {
+    font-size: 28px;
+    font-weight: bold;
+    color: #16834c;
+    margin-bottom: 6px;
+}
+
+.stat-card p {
+    font-size: 13px;
+    color: #68756d;
+}
+
+.form-card,
+.daftar-card {
     background: white;
     padding: 20px;
     border-radius: 13px;
-    box-shadow: 0 3px 12px #00000012;
+    box-shadow: 0 2px 10px #00000012;
     margin-bottom: 25px;
 }
 
@@ -120,7 +140,7 @@ header {
     font-size: 14px;
     font-weight: bold;
     color: #315b43;
-    margin: 14px 0 7px;
+    margin: 13px 0 7px;
 }
 
 .form-card input,
@@ -131,12 +151,6 @@ header {
     border-radius: 8px;
     font-size: 14px;
     background: #fbfefb;
-    outline: none;
-}
-
-.form-card input:focus,
-.form-card select:focus {
-    border-color: #16834c;
 }
 
 .tombol {
@@ -164,45 +178,60 @@ header {
     color: #315b43;
 }
 
-/* RINGKASAN */
-.ringkasan {
-    background: linear-gradient(135deg, #e1f5e6, #f7fff8);
-    border-left: 5px solid #16834c;
-    padding: 18px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-
-.ringkasan .angka {
-    font-size: 30px;
-    font-weight: bold;
-    color: #145c3b;
-    margin-top: 6px;
-}
-
-/* DAFTAR ANGGOTA */
-.daftar-card {
-    background: white;
-    padding: 18px;
-    border-radius: 13px;
-    box-shadow: 0 3px 12px #00000012;
-    overflow-x: auto;
-}
-
-#daftarAnggota {
-    margin-top: 12px;
-}
-
-#daftarAnggota > div {
-    padding: 13px;
+.anggota-item {
+    padding: 14px 0;
     border-bottom: 1px solid #e5eee7;
 }
 
-#daftarAnggota > div:last-child {
+.anggota-item:last-child {
     border-bottom: none;
 }
 
-/* FOOTER */
+.anggota-item strong {
+    color: #145c3b;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.anggota-item p {
+    font-size: 13px;
+    color: #68756d;
+    margin-bottom: 9px;
+}
+
+.aksi {
+    display: flex;
+    gap: 8px;
+}
+
+.aksi button {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-edit {
+    background: #e6f2e9;
+    color: #145c3b;
+}
+
+.btn-hapus {
+    background: #ffe9e9;
+    color: #bd2929;
+}
+
+.pesan {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background: #eaf5ee;
+    color: #145c3b;
+    font-size: 13px;
+    display: none;
+}
+
 footer {
     background: linear-gradient(135deg, #064d2d, #126b3c);
     color: white;
@@ -214,7 +243,6 @@ footer {
     line-height: 1.9;
 }
 
-/* LOADING */
 #loading {
     text-align: center;
     padding: 60px 15px;
@@ -226,49 +254,48 @@ footer {
     display: none;
 }
 
-/* TAMPILAN HP */
-@media(max-width: 480px) {
-    .header-inner {
-        flex-wrap: wrap;
-    }
-
-    .logo {
-        width: 48px;
-        height: 48px;
-        font-size: 25px;
-    }
-
+@media(max-width:480px) {
     .identitas h1 {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .identitas p {
-        font-size: 10px;
+        font-size: 9px;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
     }
 
     .keluar {
-        padding: 9px 11px;
+        padding: 9px;
         font-size: 12px;
     }
 
+    .statistik {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
     .banner h2 {
-        font-size: 20px;
+        font-size: 19px;
     }
 
-    .judul {
-        font-size: 18px;
-    }
-
-    .form-card {
-        padding: 16px;
+    .form-card,
+    .daftar-card {
+        padding: 15px;
     }
 }
 </style></head><body><div id="loading">
     🌳 Memeriksa akses admin...
 </div><div id="dashboard"><header>
-    <div class="header-inner">    <div class="logo">🌳</div>
-
-    <div class="identitas">
+    <div class="header-inner">
+        <div class="logo">🌳</div>    <div class="identitas">
         <h1>DASHBOARD ADMIN</h1>
         <p>KELUARGA BESAR IMAN SUKIYADI</p>
     </div>
@@ -276,92 +303,402 @@ footer {
     <button class="keluar" id="logoutBtn">
         Keluar
     </button>
-
 </div>
 
-</header><section class="banner">
+</header><main class="container"><section class="banner">
     <h2>Selamat Datang, Admin</h2>
     <p>
         Selamat datang di halaman pengelolaan website
         Keluarga Besar Iman Sukiyadi.
-        Mari mengenal keluarga dan menjaga silaturahmi.
+        Mengenal keluarga, menjaga silaturahmi.
     </p>
-</section><main class="container"><h2 class="judul">🌿 Pengelolaan Data Keluarga</h2>
+</section><h2 class="judul">📊 Ringkasan Data</h2><section class="statistik">
+    <div class="stat-card">
+        <div class="angka" id="jumlahAnggota">-</div>
+        <p>Jumlah Anggota Keluarga</p>
+    </div><div class="stat-card">
+    <div class="angka">Aktif</div>
+    <p>Status Dashboard Admin</p>
+</div>
 
-<section class="form-card">
+</section><h2 class="judul">👨‍👩‍👧‍👦 Tambah Anggota Keluarga</h2><section class="form-card"><div class="pesan" id="pesan"></div>
 
-    <h3 id="judulForm" class="judul">
-        Tambah Anggota Keluarga
-    </h3>
+<form id="anggotaForm">
 
-    <form id="anggotaForm">
+    <input type="hidden" id="anggotaId">
 
-        <label for="nama">Nama Lengkap</label>
-        <input
-            type="text"
-            id="nama"
-            placeholder="Masukkan nama anggota"
-            required
-        >
+    <label for="nama">Nama Lengkap</label>
+    <input type="text" id="nama" required
+           placeholder="Masukkan nama anggota">
 
-        <label for="jenisKelamin">Jenis Kelamin</label>
-        <select id="jenisKelamin" required>
-            <option value="">Pilih jenis kelamin</option>
-            <option value="Laki-laki">Laki-laki</option>
-            <option value="Perempuan">Perempuan</option>
-        </select>
+    <label for="jenisKelamin">Jenis Kelamin</label>
+    <select id="jenisKelamin" required>
+        <option value="">Pilih jenis kelamin</option>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option>
+    </select>
 
-        <label for="tanggalLahir">Tanggal Lahir</label>
-        <input
-            type="date"
-            id="tanggalLahir"
-        >
+    <label for="tanggalLahir">Tanggal Lahir</label>
+    <input type="date" id="tanggalLahir">
 
-        <label for="ayahId">Nama Ayah</label>
-        <select id="ayahId">
-            <option value="">Pilih ayah</option>
-        </select>
+    <label for="ayahId">Nama Ayah</label>
+    <select id="ayahId">
+        <option value="">Pilih ayah</option>
+    </select>
 
-        <label for="ibuId">Nama Ibu</label>
-        <select id="ibuId">
-            <option value="">Pilih ibu</option>
-        </select>
+    <label for="ibuId">Nama Ibu</label>
+    <select id="ibuId">
+        <option value="">Pilih ibu</option>
+    </select>
 
-        <div class="tombol">
-            <button type="submit" id="simpanBtn">
-                Simpan Data
-            </button>
+    <div class="tombol">
+        <button type="submit" id="simpanBtn">
+            Simpan Data
+        </button>
 
-            <button type="button" id="batalBtn">
-                Batal
-            </button>
-        </div>
+        <button type="button" id="batalBtn">
+            Batal
+        </button>
+    </div>
 
-    </form>
+</form>
 
-</section>
-
-<h2 class="judul">📊 Ringkasan Data</h2>
-
-<section class="ringkasan">
-    <p>Jumlah Anggota Keluarga</p>
-    <div class="angka" id="jumlahAnggota">-</div>
-</section>
-
-<section class="daftar-card">
-
-    <h2 class="judul">👨‍👩‍👧‍👦 Daftar Anggota Keluarga</h2>
-
+</section><h2 class="judul">📋 Daftar Anggota Keluarga</h2><section class="daftar-card">
     <div id="daftarAnggota">
         Memuat data anggota...
     </div>
-
-</section>
-
-</main><footer>
+</section></main><footer>
     <strong>KELUARGA BESAR IMAN SUKIYADI</strong><br>
     Mengenal keluarga, menjaga silaturahmi<br>
     Halaman Pengelolaan Admin<br>
-    &copy; 2026 Keluarga Besar Iman Sukiyadi
-</footer></div><script type="module" src="js/admin.js"></script></body>
+    &copy; 2026 Iman Sukiyadi
+</footer></div><script type="module">
+import { auth, db } from "./js/firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+/* IDENTITAS ADMIN */
+const ADMIN_UID = "9h5mI5smFLXFYs6pK7wlTrsUJV83";
+
+/* ELEMEN HALAMAN */
+const loading = document.getElementById("loading");
+const dashboard = document.getElementById("dashboard");
+const form = document.getElementById("anggotaForm");
+const daftar = document.getElementById("daftarAnggota");
+const jumlah = document.getElementById("jumlahAnggota");
+const pesan = document.getElementById("pesan");
+
+const nama = document.getElementById("nama");
+const jenisKelamin = document.getElementById("jenisKelamin");
+const tanggalLahir = document.getElementById("tanggalLahir");
+const ayahId = document.getElementById("ayahId");
+const ibuId = document.getElementById("ibuId");
+const anggotaId = document.getElementById("anggotaId");
+
+let dataAnggota = [];
+let sedangMemuat = false;
+
+/* PESAN */
+function tampilPesan(teks) {
+    pesan.textContent = teks;
+    pesan.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function sembunyikanPesan() {
+    pesan.style.display = "none";
+}
+
+/* PEMERIKSAAN LOGIN */
+onAuthStateChanged(auth, async (user) => {
+
+    if (sedangMemuat) return;
+    sedangMemuat = true;
+
+    if (!user) {
+        window.location.replace("login.html");
+        return;
+    }
+
+    if (user.uid !== ADMIN_UID) {
+        await signOut(auth);
+        window.location.replace("login.html");
+        return;
+    }
+
+    loading.style.display = "none";
+    dashboard.style.display = "block";
+
+    try {
+        await muatAnggota();
+    } catch (error) {
+        console.error(error);
+        daftar.textContent = "Gagal memuat data: " + error.message;
+    }
+});
+
+/* MEMUAT DATA ANGGOTA */
+async function muatAnggota() {
+
+    const snapshot = await getDocs(collection(db, "anggota"));
+
+    dataAnggota = snapshot.docs.map(d => ({
+        id: d.id,
+        ...d.data()
+    }));
+
+    jumlah.textContent = dataAnggota.length;
+
+    tampilkanDaftar();
+    isiPilihanOrangTua();
+}
+
+/* MENAMPILKAN DAFTAR */
+function tampilkanDaftar() {
+
+    daftar.innerHTML = "";
+
+    if (dataAnggota.length === 0) {
+        daftar.textContent = "Belum ada data anggota keluarga.";
+        return;
+    }
+
+    dataAnggota.sort((a, b) =>
+        (a.nama || "").localeCompare(b.nama || "", "id")
+    );
+
+    dataAnggota.forEach(orang => {
+
+        const item = document.createElement("div");
+        item.className = "anggota-item";
+
+        const namaEl = document.createElement("strong");
+        namaEl.textContent = orang.nama || "Tanpa nama";
+
+        const info = document.createElement("p");
+        info.textContent =
+            (orang.jenisKelamin || "-") +
+            " • " +
+            (orang.tanggalLahir || "Tanggal lahir tidak diisi");
+
+        const aksi = document.createElement("div");
+        aksi.className = "aksi";
+
+        const edit = document.createElement("button");
+        edit.className = "btn-edit";
+        edit.textContent = "Edit";
+        edit.addEventListener("click", () => editAnggota(orang.id));
+
+        const hapus = document.createElement("button");
+        hapus.className = "btn-hapus";
+        hapus.textContent = "Hapus";
+        hapus.addEventListener("click", () => hapusAnggota(orang.id));
+
+        aksi.append(edit, hapus);
+        item.append(namaEl, info, aksi);
+        daftar.appendChild(item);
+    });
+}
+
+/* PILIHAN AYAH DAN IBU */
+function isiPilihanOrangTua() {
+
+    const nilaiAyah = ayahId.value;
+    const nilaiIbu = ibuId.value;
+
+    ayahId.innerHTML = '<option value="">Pilih ayah</option>';
+    ibuId.innerHTML = '<option value="">Pilih ibu</option>';
+
+    dataAnggota.forEach(orang => {
+
+        if (orang.id === anggotaId.value) return;
+
+        const option = document.createElement("option");
+        option.value = orang.id;
+        option.textContent = orang.nama || "Tanpa nama";
+
+        if (orang.jenisKelamin === "Laki-laki") {
+            ayahId.appendChild(option);
+        }
+
+        if (orang.jenisKelamin === "Perempuan") {
+            ibuId.appendChild(option.cloneNode(true));
+        }
+    });
+
+    ayahId.value = nilaiAyah;
+    ibuId.value = nilaiIbu;
+}
+
+/* EDIT ANGGOTA */
+function editAnggota(id) {
+
+    const orang = dataAnggota.find(a => a.id === id);
+    if (!orang) return;
+
+    anggotaId.value = orang.id;
+    nama.value = orang.nama || "";
+    jenisKelamin.value = orang.jenisKelamin || "";
+    tanggalLahir.value = orang.tanggalLahir || "";
+
+    ayahId.value = orang.ayahId || "";
+    ibuId.value = orang.ibuId || "";
+
+    isiPilihanOrangTua();
+
+    ayahId.value = orang.ayahId || "";
+    ibuId.value = orang.ibuId || "";
+
+    document.getElementById("judulForm").textContent =
+        "Edit Anggota Keluarga";
+
+    document.getElementById("simpanBtn").textContent =
+        "Perbarui Data";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* SIMPAN DAN PERBARUI */
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+    sembunyikanPesan();
+
+    const data = {
+        nama: nama.value.trim(),
+        jenisKelamin: jenisKelamin.value,
+        tanggalLahir: tanggalLahir.value,
+        ayahId: ayahId.value,
+        ibuId: ibuId.value
+    };
+
+    if (!data.nama) {
+        tampilPesan("Nama anggota wajib diisi.");
+        return;
+    }
+
+    if (data.ayahId && data.ayahId === data.ibuId) {
+        tampilPesan("Ayah dan ibu tidak boleh orang yang sama.");
+        return;
+    }
+
+    const tombol = document.getElementById("simpanBtn");
+    tombol.disabled = true;
+    tombol.textContent = "Menyimpan...";
+
+    try {
+
+        if (anggotaId.value) {
+
+            await updateDoc(
+                doc(db, "anggota", anggotaId.value),
+                data
+            );
+
+            tampilPesan("Data anggota berhasil diperbarui.");
+
+        } else {
+
+            await addDoc(collection(db, "anggota"), data);
+
+            tampilPesan("Anggota keluarga berhasil ditambahkan.");
+        }
+
+        resetForm();
+        await muatAnggota();
+
+    } catch (error) {
+
+        console.error(error);
+        tampilPesan("Gagal menyimpan data: " + error.message);
+
+    } finally {
+
+        tombol.disabled = false;
+        tombol.textContent = anggotaId.value
+            ? "Perbarui Data"
+            : "Simpan Data";
+    }
+});
+
+/* HAPUS ANGGOTA */
+async function hapusAnggota(id) {
+
+    const orang = dataAnggota.find(a => a.id === id);
+    if (!orang) return;
+
+    const memilikiAnak = dataAnggota.some(a =>
+        a.ayahId === id || a.ibuId === id
+    );
+
+    if (memilikiAnak) {
+        alert("Anggota ini masih tercatat sebagai ayah atau ibu. Ubah data anaknya terlebih dahulu.");
+        return;
+    }
+
+    const yakin = confirm(
+        "Hapus data anggota " + orang.nama + "?"
+    );
+
+    if (!yakin) return;
+
+    try {
+
+        await deleteDoc(doc(db, "anggota", id));
+
+        tampilPesan("Data anggota berhasil dihapus.");
+        await muatAnggota();
+
+    } catch (error) {
+
+        console.error(error);
+        tampilPesan("Gagal menghapus data: " + error.message);
+    }
+}
+
+/* RESET FORM */
+function resetForm() {
+
+    form.reset();
+    anggotaId.value = "";
+
+    document.getElementById("judulForm").textContent =
+        "Tambah Anggota Keluarga";
+
+    document.getElementById("simpanBtn").textContent =
+        "Simpan Data";
+
+    isiPilihanOrangTua();
+}
+
+document.getElementById("batalBtn").addEventListener("click", () => {
+    resetForm();
+    sembunyikanPesan();
+});
+
+/* KELUAR */
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+
+    if (!confirm("Apakah Anda yakin ingin keluar?")) return;
+
+    try {
+        await signOut(auth);
+        window.location.replace("login.html");
+    } catch (error) {
+        alert("Gagal keluar: " + error.message);
+    }
+});
+</script></body>
 </html>
