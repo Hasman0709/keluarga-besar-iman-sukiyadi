@@ -1,60 +1,128 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Keluarga Iman Sukiyadi</title>
+<title>Admin Keluarga Iman Sukiyadi</title><style>
+* {
+  box-sizing: border-box;
+}
 
-<style>
 body {
   font-family: Arial, sans-serif;
-  background: #f1f5f2;
+  background: #f0f5f1;
   margin: 0;
   color: #263b30;
 }
 
 header {
-  background: #145c3b;
+  background: linear-gradient(135deg, #145c3b, #218653);
   color: white;
-  padding: 20px;
+  padding: 25px 15px;
   text-align: center;
 }
 
+header h2 {
+  margin: 0 0 8px;
+  font-size: 23px;
+}
+
+header p {
+  margin: 0 0 15px;
+  font-size: 14px;
+}
+
+nav {
+  margin-bottom: 12px;
+}
+
+nav a {
+  color: white;
+  margin: 5px 8px;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
 .container {
-  padding: 15px;
-  max-width: 700px;
+  padding: 16px;
+  max-width: 750px;
   margin: auto;
 }
 
 .card {
   background: white;
-  padding: 18px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 8px #0001;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px #00000012;
+}
+
+.card h3 {
+  color: #145c3b;
+  margin-top: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5eee7;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 input, select {
   width: 100%;
-  padding: 12px;
-  margin: 7px 0 13px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  box-sizing: border-box;
+  padding: 13px;
+  margin: 7px 0 12px;
+  border: 1px solid #ccd8cf;
+  border-radius: 8px;
   background: white;
+  font-size: 15px;
+  color: #263b30;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #218653;
+  box-shadow: 0 0 0 2px #21865320;
 }
 
 button {
-  padding: 11px 15px;
+  padding: 12px 17px;
   border: none;
-  border-radius: 7px;
+  border-radius: 8px;
   background: #145c3b;
   color: white;
+  font-size: 14px;
   cursor: pointer;
-  margin: 3px;
+  margin: 4px 2px;
 }
 
-.hapus {
+button:active {
+  transform: scale(0.97);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#simpanBtn {
+  width: 100%;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+#batalBtn {
+  background: #68766d;
+  width: 100%;
+}
+
+.hapus, .logout {
   background: #c62828;
 }
 
@@ -62,92 +130,110 @@ button {
   background: #e18a00;
 }
 
-.logout {
-  background: #c62828;
+.anggota {
+  border-bottom: 1px solid #e1e8e3;
+  padding: 15px 0;
+  line-height: 1.5;
 }
 
-.anggota {
-  border-bottom: 1px solid #ddd;
-  padding: 12px 0;
+.anggota:last-child {
+  border-bottom: none;
 }
 
 .anggota strong {
   display: block;
+  color: #145c3b;
+  font-size: 16px;
   margin-bottom: 5px;
 }
 
-nav a {
-  color: white;
-  margin: 5px;
-  display: inline-block;
-  text-decoration: none;
+#jumlahAnggota {
+  background: #e9f5ec;
+  color: #145c3b;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
 }
-</style>
-</head>
 
-<body>
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #718078;
+  font-size: 12px;
+}
 
-<header>
+@media (max-width: 480px) {
+  header h2 {
+    font-size: 20px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  button {
+    padding: 12px;
+  }
+}
+</style></head><body><header>
   <h2>🌳 ADMIN KELUARGA</h2>
-  <p>Keluarga Besar Iman Sukiyadi</p>
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="silsilah.html">Pohon Silsilah</a>
-  </nav>
-  <br>
-  <button class="logout" id="logoutBtn">Keluar</button>
-</header>
+  <p>Keluarga Besar Iman Sukiyadi</p>  <nav>
+    <a href="index.html">🏠 Beranda</a>
+    <a href="silsilah.html">🌳 Pohon Silsilah</a>
+  </nav><button class="logout" id="logoutBtn">Keluar</button>
 
-<div class="container">
+</header><div class="container">  <div class="card">
+    <h3 id="judulForm">Tambah Anggota Keluarga</h3><form id="anggotaForm">
 
-  <div class="card">
-    <h3 id="judulForm">Tambah Anggota Keluarga</h3>
+  <label>Nama lengkap</label>
+  <input
+    id="nama"
+    type="text"
+    required
+    placeholder="Masukkan nama lengkap"
+  >
 
-    <form id="anggotaForm">
+  <label>Jenis kelamin</label>
+  <select id="jenisKelamin" required>
+    <option value="">Pilih jenis kelamin</option>
+    <option value="Laki-laki">Laki-laki</option>
+    <option value="Perempuan">Perempuan</option>
+  </select>
 
-      <label>Nama lengkap</label>
-      <input id="nama" required placeholder="Nama anggota">
+  <label>Tanggal lahir</label>
+  <input type="date" id="tanggalLahir">
 
-      <label>Jenis kelamin</label>
-      <select id="jenisKelamin" required>
-        <option value="">Pilih jenis kelamin</option>
-        <option value="Laki-laki">Laki-laki</option>
-        <option value="Perempuan">Perempuan</option>
-      </select>
+  <label>Nama ayah</label>
+  <select id="ayahId">
+    <option value="">Belum diketahui / tidak ada</option>
+  </select>
 
-      <label>Tanggal lahir</label>
-      <input type="date" id="tanggalLahir">
+  <label>Nama ibu</label>
+  <select id="ibuId">
+    <option value="">Belum diketahui / tidak ada</option>
+  </select>
 
-      <label>Nama ayah</label>
-      <select id="ayahId">
-        <option value="">Belum diketahui / tidak ada</option>
-      </select>
+  <button type="submit" id="simpanBtn">
+    💾 Simpan Anggota
+  </button>
 
-      <label>Nama ibu</label>
-      <select id="ibuId">
-        <option value="">Belum diketahui / tidak ada</option>
-      </select>
+  <button type="button" id="batalBtn" hidden>
+    Batal Edit
+  </button>
 
-      <button type="submit" id="simpanBtn">
-        Simpan Anggota
-      </button>
+</form>
 
-      <button type="button" id="batalBtn" hidden>
-        Batal Edit
-      </button>
+  </div>  <div class="card">
+    <h3>👨‍👩‍👧‍👦 Daftar Anggota Keluarga</h3><p id="jumlahAnggota">Memuat data...</p>
 
-    </form>
-  </div>
+<div id="daftarAnggota"></div>
 
-  <div class="card">
-    <h3>Daftar Anggota Keluarga</h3>
-    <p id="jumlahAnggota">Memuat data...</p>
-    <div id="daftarAnggota"></div>
-  </div>
-
-</div>
-
-<script type="module" src="js/admin.js"></script>
-
-</body>
+  </div></div><footer>
+  Keluarga Besar Iman Sukiyadi
+</footer><script type="module" src="js/admin.js"></script></body>
 </html>
